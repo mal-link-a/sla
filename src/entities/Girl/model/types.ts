@@ -60,6 +60,7 @@ export const GirlImgPath: GirlImg= {
     Exhibitionism: 'l_anal.png', // 
     Masturbation: 'l_anal.png', // 
     Dildo: 'l_anal.png',
+    Irrumation: 'l_petting.png',
     service: '',
     cook: '',
     doctor: '',

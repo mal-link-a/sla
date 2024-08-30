@@ -4,9 +4,9 @@ export interface StudiedStat {
     lessonText: string[];
 }
 export interface StudiedStatWithСondition extends StudiedStat {
-   
+    conditions: StatCondition[];
 }
-export type StatCondition = [keyof StudiedSexStats, string ]
+export type StatCondition = [keyof StudiedSexStats | keyof StudiedNormalStats, number]
 
 export interface StudiedSexStats {
     HJ: StudiedStat; //работа руками
@@ -22,22 +22,22 @@ export interface StudiedSexStats {
     Exhibitionism: StudiedStat; //Публичность
     Masturbation: StudiedStat; //
     Dildo: StudiedStat; //
+    Irrumation : StudiedStatWithСondition//
   }
 
   export interface StudiedNormalStats {
-    HJ: StudiedStat; //работа руками
-    FJ: StudiedStat; //Работа ногами
-    TitFuck: StudiedStat; //Пайзури
+    Service: StudiedStat; //работа руками
+    Doctor: StudiedStat; //Работа ногами
+    Cook: StudiedStat; //Пайзури
     Kiss: StudiedStat; //Поцелуи
-    BJ: StudiedStat; //Минет
-    Rimming: StudiedStat; //Римминг
-    VaginalSex: StudiedStat; //
-    AnalSex: StudiedStat; //
-    Mazo: StudiedStat; //Мазохизм
-    Pissing: StudiedStat; //Писсинг
-    Exhibitionism: StudiedStat; //Публичность
-    Masturbation: StudiedStat; //
-    Dildo: StudiedStat; //
+    Secretary: StudiedStat; //Минет
+    Dance: StudiedStat; //Римминг
+    Fighting: StudiedStat; //
+    Rhetoric: StudiedStat; //
+    Catgirl: StudiedStat; //Мазохизм
+    Alchemy: StudiedStat; //Писсинг
+    Magic: StudiedStat; //Публичность
+    Music: StudiedStat; //    
   }
 
 
@@ -45,5 +45,7 @@ export interface StudiedSexStats {
 export interface ComplicatedSexStat {
     name: string;
     description: string;
-    tier1Stats: keyof StudiedSexStats;    
+    tier1Stats: (keyof StudiedSexStats | keyof StudiedNormalStats)[] | null; 
+    tier2Stats: (keyof StudiedSexStats | keyof StudiedNormalStats)[] | null; 
+    tier3Stats: (keyof StudiedSexStats | keyof StudiedNormalStats)[] | null;    
   }

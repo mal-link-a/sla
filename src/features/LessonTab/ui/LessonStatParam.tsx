@@ -14,6 +14,8 @@ import { observer } from "mobx-react-lite";
 import { girlSpendingStamina } from "../../../generalEvents/girlSpendingStamina";
 import { statParamProp } from "../model/types";
 import { getStudyText } from "../lib/getStudyText";
+import { StudiedSexStats, studiedSexStats, StudiedStatWithСondition,  } from "../../../entities/StudiedStats";
+import { checkConditions } from "../../../generalEvents/checkConditions";
 
 interface Props {
   blockName: string;
@@ -32,6 +34,15 @@ export const LessonStatParam: FC<Props> = observer(
       lessonTabStore.infoMode
     ];
     const toast = useToast();
+     const showFailedToast =(text:string) => {
+      toast({
+        title: "Не выполнено",
+        description: text,
+        duration: 10000,
+        position: "top-left",
+        isClosable: true,
+      });
+     }
 
     const onClick = () => {
       toast.closeAll();
@@ -46,20 +57,24 @@ export const LessonStatParam: FC<Props> = observer(
         });
         return;
       }
-      const check = girlSpendingStamina(1);      
-      if (!check) {
-
+      const energyCheck = girlSpendingStamina(1); 
+      if (!energyCheck) {
+        if (blockName === "sexExp"){
+          const needConditionCheck = studiedSexStats[key as keyof StudiedSexStats] as StudiedStatWithСondition;
+          if (needConditionCheck.conditions?.length > 0) {
+            let conditionCheck = checkConditions(needConditionCheck.conditions);
+            if (conditionCheck) {
+              showFailedToast(conditionCheck);
+              return;
+            }            
+          }            
+        } 
         lessonTabStore.setModalIsOpen(true, key,);
         let isLvlUp = lessonExecution(blockName, key, level,exp);   
         lessonTabStore.setModalIsOpen(true, key, getStudyText(key,level ,isLvlUp));     
       } else {
-        toast({
-          title: "Не выполнено",
-          description: check,
-          duration: 10000,
-          position: "top-left",
-          isClosable: true,
-        });
+        showFailedToast(energyCheck);
+        return;
       }      
     };
 

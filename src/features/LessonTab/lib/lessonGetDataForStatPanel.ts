@@ -1,7 +1,7 @@
 
 import { Girl } from "../../../entities/Girl";
 import { studiedSexStats } from "../../../entities/StudiedStats/model/sexStats";
-import { StudiedSexStats } from "../../../entities/StudiedStats/model/types";
+import { StudiedSexStats, StudiedStatWithСondition } from "../../../entities/StudiedStats/model/types";
 
 import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
 import { statPanelProp } from "../model/types";

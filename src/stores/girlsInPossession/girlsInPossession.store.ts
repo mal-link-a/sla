@@ -228,7 +228,7 @@ const firstGirl:Girl  = {
       exp: 0
     },
     BJ: {
-      level: 4,
+      level: 1,
       exp: 0
     },
     Rimming: {
@@ -261,6 +261,10 @@ const firstGirl:Girl  = {
     },
     Dildo: {
       level: 2,
+      exp: 0
+    },
+    Irrumation: {
+      level: 0,
       exp: 0
     }
   },  
