@@ -1,6 +1,5 @@
 import {
   StatCondition,
-  StudiedNormalStats,
   studiedSexStats,
   StudiedSexStats,
 } from "../entities/StudiedStats";
@@ -16,7 +15,7 @@ export const checkConditions = (conditions: StatCondition[]) => {
     let [param, value] = [conditions[i][0], conditions[i][1]];
 
     if (param as keyof StudiedSexStats) {
-      if (girl.sexExp[param as keyof StudiedSexStats].level < value) {
+      if (girl.exp[param as keyof StudiedSexStats].level < value) {
         failedConds.push(studiedSexStats[param as keyof StudiedSexStats].name);
         check = true;
       }
@@ -28,3 +27,4 @@ export const checkConditions = (conditions: StatCondition[]) => {
     return ("Подопечная не готова. Сперва ей нужно подтянуть навыки: " + failedConds.join(", ")+ ".")
   }
 };
+

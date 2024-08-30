@@ -1,1 +1,0 @@
-export const expBase:number[] = [50,60,70,70,100,900];

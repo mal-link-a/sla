@@ -1,8 +1,7 @@
 import { expBase,} from "../../../entities/Girl";
 import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
 
-export const lessonExecution = (
-  blockName: string,
+export const lessonExecution = (  
   keyName: string,
   level: number,
   exp: number
@@ -21,6 +20,6 @@ export const lessonExecution = (
   if (val.level === 10) {
     val.exp = 0;
   } 
-  girlsInPossessionStore.trainGirl(blockName, keyName, val);
+  girlsInPossessionStore.trainGirl(keyName, val);
   return (isLvlup);
 };

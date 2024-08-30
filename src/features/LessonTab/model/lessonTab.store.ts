@@ -1,5 +1,5 @@
 import { makeObservable, observable, action } from 'mobx'
-import { LessonTeacher } from './types';
+import { ShowMode, Teacher } from './types';
 
 class Store {
     constructor() {
@@ -7,7 +7,8 @@ class Store {
     }
   
     @observable infoMode: boolean = false;
-    @observable teacher: LessonTeacher = LessonTeacher.Me;
+    @observable teacher: Teacher = Teacher.Me;
+    @observable showMode: ShowMode = ShowMode.singles;
 
     @observable modalIsOpen: boolean = false;
     @observable modalImg: string   = "normal";
@@ -24,8 +25,11 @@ class Store {
     @action switchInfoMod = () => {
       this.infoMode = !this.infoMode
     }
-    @action setTeacher = (value:LessonTeacher) => {
+    @action setTeacher = (value:Teacher) => {
       this.teacher = value;
+    }
+    @action setShowMode = (value:ShowMode) => {
+      this.showMode = value;
     }
   }
   

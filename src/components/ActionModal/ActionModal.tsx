@@ -58,7 +58,7 @@ export const ActionModal: FC<Props> = observer(({ img, text, ...modalProps }) =>
         >
           {text ? (
             text.split("\n").map((str) => (
-              <Text color="white" fontSize={fontSize} lineHeight={1.2} pl={4} pr={4}>
+              <Text key={str.slice(-5)} color="white" fontSize={fontSize} lineHeight={1.2} pl={4} pr={4}>
                 {str}
               </Text>
             ))

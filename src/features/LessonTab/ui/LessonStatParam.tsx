@@ -7,34 +7,34 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import { expBase } from "../../../entities/Girl";
+import { expBase, statLevelColor } from "../../../entities/Girl";
 import { lessonTabStore } from "../model/lessonTab.store";
 import { lessonExecution } from "../lib/lessonExecution";
 import { observer } from "mobx-react-lite";
 import { girlSpendingStamina } from "../../../generalEvents/girlSpendingStamina";
 import { statParamProp } from "../model/types";
 import { getStudyText } from "../lib/getStudyText";
-import { StudiedSexStats, studiedSexStats, StudiedStatWithСondition,  } from "../../../entities/StudiedStats";
+import {
+  StudiedSexStats,
+  studiedSexStats,
+  StudiedStatWithСondition,
+} from "../../../entities/StudiedStats";
 import { checkConditions } from "../../../generalEvents/checkConditions";
 
 interface Props {
-  blockName: string;
-  stat: statParamProp;
+  keyName: string;
+  name: string;
+  description: string;
+  level: number;
+  exp: number;
 }
 
 //TODO В пропсах level получаем от 0 до 5. Написать на ts проверку на диапазон?
-export const LessonStatParam: FC<Props> = observer(  
-  ({ blockName, stat }) => {
-    const [key, level, exp, name, description,  infoMode] = [
-      stat.key,
-      stat.level,
-      stat.exp,
-      stat.name,
-      stat.description,
-      lessonTabStore.infoMode
-    ];
+export const LessonStatParam: FC<Props> = observer(
+  ({ keyName, level, exp, name, description }) => {
+    const infoMode = lessonTabStore.infoMode;
     const toast = useToast();
-     const showFailedToast =(text:string) => {
+    const showFailedToast = (text: string) => {
       toast({
         title: "Не выполнено",
         description: text,
@@ -42,10 +42,11 @@ export const LessonStatParam: FC<Props> = observer(
         position: "top-left",
         isClosable: true,
       });
-     }
+    };
 
     const onClick = () => {
       toast.closeAll();
+      console.log(infoMode);
       if (infoMode) {
         toast({
           title: name,
@@ -53,42 +54,41 @@ export const LessonStatParam: FC<Props> = observer(
           duration: 9000,
           position: "top-left",
           isClosable: true,
-          status:'info'
+          status: "info",
         });
         return;
       }
-      const energyCheck = girlSpendingStamina(1); 
+      const energyCheck = girlSpendingStamina(1);
       if (!energyCheck) {
-        if (blockName === "sexExp"){
-          const needConditionCheck = studiedSexStats[key as keyof StudiedSexStats] as StudiedStatWithСondition;
-          if (needConditionCheck.conditions?.length > 0) {
-            let conditionCheck = checkConditions(needConditionCheck.conditions);
-            if (conditionCheck) {
-              showFailedToast(conditionCheck);
-              return;
-            }            
-          }            
-        } 
-        lessonTabStore.setModalIsOpen(true, key,);
-        let isLvlUp = lessonExecution(blockName, key, level,exp);   
-        lessonTabStore.setModalIsOpen(true, key, getStudyText(key,level ,isLvlUp));     
+        const needConditionCheck = studiedSexStats[
+          keyName as keyof StudiedSexStats
+        ] as StudiedStatWithСondition;
+        if (needConditionCheck.conditions?.length > 0) {
+          let conditionCheck = checkConditions(needConditionCheck.conditions);
+          if (conditionCheck) {
+            showFailedToast(conditionCheck);
+            return;
+          }
+        }
+        lessonTabStore.setModalIsOpen(true, keyName);
+        let isLvlUp = lessonExecution(keyName, level, exp);
+        lessonTabStore.setModalIsOpen(
+          true,
+          keyName,
+          getStudyText(keyName, level, isLvlUp)
+        );
       } else {
         showFailedToast(energyCheck);
         return;
-      }      
+      }
     };
 
     const getColor = () => {
-      if (level < 1) return "#000000";
-      if (level < 2) return "#A0522D";
-      if (level < 3) return "#DC143C";
-      if (level < 4) return "#FF1493";
-      if (level < 5) return "#FF00FF";
-      if (level < 6) return "#8A2BE2";
-      if (level < 7) return "#0000CD";
-      if (level < 8) return "#1E90FF";
-      if (level < 9) return "#00CED1";
-      if (level < 10) return "#9ACD32";
+      if (level < 1) return "#808080";
+      if (level < 2) return "#DC143C";
+      if (level < 3) return "#FF00FF";
+      if (level < 4) return "#0000CD";
+      if (level < 5) return "#9ACD32";
       return "#008000";
     };
     return (
@@ -103,7 +103,7 @@ export const LessonStatParam: FC<Props> = observer(
             h={6}
             minW={"100%"}
             fontWeight={500}
-            color={getColor()}
+            color={statLevelColor[level]}
           >
             {name}
           </Button>
@@ -117,7 +117,7 @@ export const LessonStatParam: FC<Props> = observer(
                   : level * 20 + Math.ceil((exp * 10) / expBase[level])
               }
             />
-            <Text color={getColor()}>{level}</Text>
+            <Text color={statLevelColor[level]}>{level}</Text>
           </HStack>
         </label>
       </VStack>

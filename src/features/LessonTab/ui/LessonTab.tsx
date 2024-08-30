@@ -4,7 +4,6 @@ import {
   Grid,
   GridItem,
   HStack,
-
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -14,13 +13,13 @@ import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsI
 import { lessonTabStore } from "../model/lessonTab.store";
 import { protagonistStore } from "../../../stores/protagonist/protagonist.store";
 
-import { lessonGetDataForStatPanel, } from "../lib/lessonGetDataForStatPanel";
-import { LessonStatPanel } from "./LessonStatPanel";
+import { lessonGetDataForStatPanel } from "../lib/lessonGetDataForStatPanel";
 import { GirlOrdinaryInfo } from "../../../components/GirlOrdinaryInfo/GirlOrdinaryInfo";
 import { ActionModal } from "../../../components/ActionModal/ActionModal";
-import { LessonTeacher } from "../model/types";
+import { ShowMode, Teacher } from "../model/types";
 import { GirlImg, GirlImgPath } from "../../../entities/Girl";
-
+import { LessonTabSingles } from "./LessonTabSingles";
+import { LessonTabGroups } from "./GroupTab/LessonTabGroups";
 
 //TODO В пропсах число получаем от 0 до 10. Написать на ts проверку на диапазон
 export const LessonTab = observer(() => {
@@ -29,6 +28,8 @@ export const LessonTab = observer(() => {
     switchInfoMod,
     teacher,
     setTeacher,
+    showMode,
+    setShowMode,
     current,
     energy,
     money,
@@ -41,42 +42,38 @@ export const LessonTab = observer(() => {
     lessonTabStore.switchInfoMod,
     lessonTabStore.teacher,
     lessonTabStore.setTeacher,
+    lessonTabStore.showMode,
+    lessonTabStore.setShowMode,
     girlsInPossessionStore.selectedGirl,
     protagonistStore.energy,
     protagonistStore.money,
     lessonTabStore.modalIsOpen,
     lessonTabStore.setModalIsOpen,
     lessonTabStore.modalImg,
-    lessonTabStore.modalText
+    lessonTabStore.modalText,
   ];
-  const girlImg = `${process.env.PUBLIC_URL}/girls/${girlsInPossessionStore.selectedGirl.id}/${GirlImgPath[modalImg as keyof GirlImg]}`;
+  const girlImg = `${process.env.PUBLIC_URL}/girls/${
+    girlsInPossessionStore.selectedGirl.id
+  }/${GirlImgPath[modalImg as keyof GirlImg]}`;
 
-  const energyIndicator = () => {
-    let components = [];
-    let energyIsExist = energy >= 0;
 
-    for (
-      let i = energyIsExist ? 0 : energy;
-      energyIsExist ? i < energy : i < 0;
-      i++
-    ) {
-      components.push(
-        <Box
-          key={"stamina" + i}
-          borderRadius={"50%"}
-          w={4}
-          h={4}
-          bg={energyIsExist ? "green" : "red"}
-        />
-      );
+
+  const showLesson = () => {
+    switch (showMode) {
+      case (ShowMode.groups): {
+        return <LessonTabGroups />
+      }
+      case(ShowMode.singles): {
+        return <LessonTabSingles />
+      }
     }
-    return components;
-  };
+
+  }
   return (
     <Grid
       minH={"100%"}
       templateRows="40px 1fr"
-      templateColumns="150px 1fr 1fr"
+      templateColumns="150px 1fr"
       gap={0}
     >
       <GridItem
@@ -88,33 +85,33 @@ export const LessonTab = observer(() => {
       >
         <Button
           onClick={(e) => {
-            setTeacher(LessonTeacher.Me);
+            setTeacher(Teacher.Me);
           }}
           isDisabled={infomode}
-          colorScheme={teacher === LessonTeacher.Me ? "green" : "blue"}
+          colorScheme={teacher === Teacher.Me ? "green" : "blue"}
           w="24%"
         >
-          {LessonTeacher.Me}
+          {Teacher.Me}
         </Button>
         <Button
           onClick={() => {
-            setTeacher(LessonTeacher.Assistant);
+            setTeacher(Teacher.Assistant);
           }}
           isDisabled={infomode}
-          colorScheme={teacher === LessonTeacher.Assistant ? "green" : "blue"}
+          colorScheme={teacher === Teacher.Assistant ? "green" : "blue"}
           w="24%"
         >
-          {LessonTeacher.Assistant}
+          {Teacher.Assistant}
         </Button>
         <Button
           onClick={() => {
-            setTeacher(LessonTeacher.Coach);
+            setTeacher(Teacher.Coach);
           }}
           isDisabled={infomode}
-          colorScheme={teacher === LessonTeacher.Coach ? "green" : "blue"}
+          colorScheme={teacher === Teacher.Coach ? "green" : "blue"}
           w="24%"
         >
-          {LessonTeacher.Coach}
+          {Teacher.Coach}
         </Button>
         <Button
           transition={"background 0.5s ease-in-out;"}
@@ -130,21 +127,48 @@ export const LessonTab = observer(() => {
       <GridItem h="100%" colSpan={1} bg="papayawhip">
         <GirlOrdinaryInfo girl={current} />
         <VStack alignItems={"stretch"} gap={0}>
-          <Text fontSize={12}>{money}$</Text>
-          <Text fontSize={12}>Энергия</Text>
-          <HStack justify={"start"}>{energyIndicator()}</HStack>
+          <Button
+            onClick={() => {
+              setShowMode(ShowMode.groups);
+            }}
+            colorScheme={showMode === ShowMode.groups ? "green" : "blue"}
+            border="1px solid"
+            borderColor={showMode === ShowMode.groups ? "#2F4F4F" : "#1C6EA4;"}
+            borderRadius={"0"}
+          >
+            {ShowMode.groups}
+          </Button>
+          <Button
+            onClick={() => {
+              setShowMode(ShowMode.singles);
+            }}
+            colorScheme={showMode === ShowMode.singles ? "green" : "blue"}
+            border="1px solid"
+            borderColor={showMode === ShowMode.singles ? "#2F4F4F" : "#1C6EA4;"}
+            borderRadius={"0"}
+          >
+            {ShowMode.singles}
+          </Button>
+          <Button
+            onClick={() => {
+              setShowMode(ShowMode.tree);
+            }}
+            colorScheme={showMode === ShowMode.tree ? "green" : "blue"}
+            border="1px solid"
+            borderColor={showMode === ShowMode.tree ? "#2F4F4F" : "#1C6EA4;"}
+            borderRadius={"0"}
+          >
+            {ShowMode.tree}
+          </Button>
         </VStack>
       </GridItem>
-      <GridItem h="100%" colSpan={1} bg="papayawhip">
-      <LessonStatPanel
-          stats={lessonGetDataForStatPanel("sexExp")}
-        />       
-      </GridItem>
-      <GridItem h="100%" colSpan={1} bg="papayawhip">
-      {`//`}
-      </GridItem>
-
-      <ActionModal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)} img={girlImg} text={modalText} />
+      {showLesson()}      
+      <ActionModal
+        isOpen={modalIsOpen}
+        onClose={() => setModalIsOpen(false)}
+        img={girlImg}
+        text={modalText}
+      />
     </Grid>
   );
 });

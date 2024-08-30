@@ -40,7 +40,7 @@ export const GirlOrdinaryInfo:FC<Props> = observer(({girl}) => {
         <Text>{girl.name} </Text>
         <Text>{girlMood[girl.mood]} </Text>
         <Text>Энергия</Text>
-        <HStack justify={"start"}>
+        <HStack minH={4} mb={1} justify={"start"}>
         {energyIndicator()}
         </HStack>        
         </VStack>

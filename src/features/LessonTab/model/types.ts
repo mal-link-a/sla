@@ -1,17 +1,15 @@
-import { Stat } from "../../../entities/Girl";
-
 export interface statPanelProp {
     blockName: string;
     stats: statParamProp[]
 }
 
 export interface statParamProp {
-    key: string,
+    keyName: string,
     name: string,
     description: string,
     level: number,
     exp: number
 }
 
-export enum LessonTeacher {Me = "Я", Assistant = "Ассистент", Coach = "Вызвать тренера"};
-
+export enum Teacher {Me = "Я", Assistant = "Ассистент", Coach = "Вызвать тренера"};
+export enum ShowMode {groups = "Группы", singles = "Одиночные", tree = "Дерево"};
