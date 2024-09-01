@@ -12,4 +12,4 @@ export interface statParamProp {
 }
 
 export enum Teacher {Me = "Я", Assistant = "Ассистент", Coach = "Вызвать тренера"};
-export enum ShowMode {groups = "Группы", singles = "Одиночные", tree = "Дерево"};
+export enum ShowMode {groups = "Группы", single = "Одиночные", tree = "Дерево"};

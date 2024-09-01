@@ -1,13 +1,12 @@
 import { makeObservable, observable, action, computed } from "mobx";
 import { Pages } from "./model/types";
-import { bgPaths } from "./model/bgPaths";
 
 class Store {
   constructor() {
     makeObservable(this);
   }
 
-  @observable imgSrc: string = bgPaths.customerOrders;
+  @observable imgSrc: string = `${process.env.PUBLIC_URL}/locations/work.png`;
 
   @observable currentPage: Pages = Pages.lesson;
 
@@ -16,6 +15,7 @@ class Store {
   }
 
   @action setImg = (imgsrc: string) => {
+    if (this.imgSrc !== imgsrc)
     this.imgSrc = imgsrc;
   };
 }

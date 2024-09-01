@@ -12,7 +12,6 @@ import { lessonTabStore } from "../model/lessonTab.store";
 import { lessonExecution } from "../lib/lessonExecution";
 import { observer } from "mobx-react-lite";
 import { girlSpendingStamina } from "../../../generalEvents/girlSpendingStamina";
-import { statParamProp } from "../model/types";
 import { getStudyText } from "../lib/getStudyText";
 import {
   StudiedSexStats,
@@ -83,14 +82,6 @@ export const LessonStatParam: FC<Props> = observer(
       }
     };
 
-    const getColor = () => {
-      if (level < 1) return "#808080";
-      if (level < 2) return "#DC143C";
-      if (level < 3) return "#FF00FF";
-      if (level < 4) return "#0000CD";
-      if (level < 5) return "#9ACD32";
-      return "#008000";
-    };
     return (
       <VStack alignItems={"flex-start"} gap={0}>
         <label>

@@ -8,7 +8,7 @@ class Store {
   
     @observable infoMode: boolean = false;
     @observable teacher: Teacher = Teacher.Me;
-    @observable showMode: ShowMode = ShowMode.singles;
+    @observable showMode: ShowMode = ShowMode.single;
 
     @observable modalIsOpen: boolean = false;
     @observable modalImg: string   = "normal";

@@ -1,11 +1,7 @@
 import {
-  Box,
   Button,
   Grid,
   GridItem,
-  HStack,
-  Text,
-  VStack,
 } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 
@@ -20,6 +16,7 @@ import { LessonTabSingles } from "./LessonTabSingles";
 import { LessonTabGroups } from "./GroupTab/LessonTabGroups";
 import { Navigate, Route, Routes, useNavigate  } from "react-router-dom";
 import { ROUTE } from "../../../routes";
+import { NavigationTabs } from "../../../components/NavigationTabs.tsx/NavigationTabs";
 
 //TODO В пропсах число получаем от 0 до 10. Написать на ts проверку на диапазон
 export const LessonTab = observer(() => {
@@ -53,6 +50,21 @@ export const LessonTab = observer(() => {
     lessonTabStore.modalText,
   ];
   const navigate = useNavigate();
+
+  const tabs = [
+    {
+      id: ShowMode.single,
+      pattern: ROUTE.LESSON.SINGLE.PATTERN,
+      label: "Простой",
+      img: `${process.env.PUBLIC_URL}/girls/${girlsInPossessionStore.selectedGirl.id}/_normal.png`,
+    },
+    {
+      id: ShowMode.groups,
+      pattern: ROUTE.LESSON.GROUPS.PATTERN,
+      label: "Группы",
+      img: `${process.env.PUBLIC_URL}/girls/${girlsInPossessionStore.selectedGirl.id}/_normal.png`,
+    },    
+  ];
 
   const girlImg = `${process.env.PUBLIC_URL}/girls/${
     girlsInPossessionStore.selectedGirl.id
@@ -114,44 +126,8 @@ export const LessonTab = observer(() => {
         </Button>
       </GridItem>
       <GridItem h="100%" colSpan={1} bg="papayawhip">
-        <GirlOrdinaryInfo girl={current} />
-        <VStack alignItems={"stretch"} gap={0}>
-          <Button
-            onClick={() => {
-              setShowMode(ShowMode.groups);
-              navigate(ROUTE.LESSON.GROUPS.PATTERN);
-            }}
-            colorScheme={showMode === ShowMode.groups ? "green" : "blue"}
-            border="1px solid"
-            borderColor={showMode === ShowMode.groups ? "#2F4F4F" : "#1C6EA4;"}
-            borderRadius={"0"}
-          >
-            {ShowMode.groups}
-          </Button>
-          <Button
-            onClick={() => {
-              setShowMode(ShowMode.singles);
-              navigate(ROUTE.LESSON.SINGLE.PATTERN);
-            }}
-            colorScheme={showMode === ShowMode.singles ? "green" : "blue"}
-            border="1px solid"
-            borderColor={showMode === ShowMode.singles ? "#2F4F4F" : "#1C6EA4;"}
-            borderRadius={"0"}
-          >
-            {ShowMode.singles}
-          </Button>
-          <Button
-            onClick={() => {
-              setShowMode(ShowMode.tree);
-            }}
-            colorScheme={showMode === ShowMode.tree ? "green" : "blue"}
-            border="1px solid"
-            borderColor={showMode === ShowMode.tree ? "#2F4F4F" : "#1C6EA4;"}
-            borderRadius={"0"}
-          >
-            {ShowMode.tree}
-          </Button>
-        </VStack>
+        <GirlOrdinaryInfo girl={current} />        
+        <NavigationTabs tabs={tabs} dir="column"/>
       </GridItem>
       <Routes>
         <Route path={ROUTE.LESSON.GROUPS.PATTERN} element={<LessonTabGroups />} />

@@ -1,11 +1,11 @@
 import { Route, Routes, } from "react-router-dom";
 import "./App.css";
-import { MainWithImage } from "./components/MainWithImage/MainWithImage";
-import { Main } from "./Pages/Main/Main";
+
 import { LessonTab } from "./features/LessonTab";
 import { CustomerOrders } from "./features/CustomerOrders/ui/CustomerOrders";
 import { ROUTE } from "./routes";
 import { InfluenceTab } from "./features/InfluenceTab/ui/InfluenceTab";
+import { MainWithImage } from "./pages/MainWithImage/ui/MainWithImage";
 
 const App = () => {
   return (
