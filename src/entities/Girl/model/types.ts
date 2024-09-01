@@ -5,6 +5,7 @@ export interface Girl {
   name: string;
   mood: number;
   energy: number;
+  mental: GirlMentalsSimple;
   exp: GirlExperience;
 }
 export enum GirlBlocksEnum {
@@ -56,3 +57,21 @@ export const GirlImgPath: GirlImg = {
   Magic: "",
   Music: "",
 };
+
+//Менталка сущности
+export type MentalSimple = {
+  name: string,
+  value: number,
+}
+
+export interface GirlMentalsSimple {  
+  lewd: MentalSimple, //похоть?
+  stick: MentalSimple, //Кнут - отрицательная порча
+  carrot: MentalSimple, //Пряник - положительная порча
+  taming: MentalSimple, //Укрощение. Пока считаем как порог, за пределами которого сущность портится кнутом или пряником
+  habituality: MentalSimple, //Привычка - время
+  arrogance: MentalSimple, //Гордость-без гордости
+  fearlessness: MentalSimple, //Бесстрашие-трусость = модификатор воздействия наказаний
+  intelligence: MentalSimple, //Интеллект
+}
+//Темперамент отдельно

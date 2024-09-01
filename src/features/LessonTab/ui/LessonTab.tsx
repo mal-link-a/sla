@@ -12,14 +12,14 @@ import { observer } from "mobx-react-lite";
 import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
 import { lessonTabStore } from "../model/lessonTab.store";
 import { protagonistStore } from "../../../stores/protagonist/protagonist.store";
-
-import { lessonGetDataForStatPanel } from "../lib/lessonGetDataForStatPanel";
 import { GirlOrdinaryInfo } from "../../../components/GirlOrdinaryInfo/GirlOrdinaryInfo";
 import { ActionModal } from "../../../components/ActionModal/ActionModal";
 import { ShowMode, Teacher } from "../model/types";
 import { GirlImg, GirlImgPath } from "../../../entities/Girl";
 import { LessonTabSingles } from "./LessonTabSingles";
 import { LessonTabGroups } from "./GroupTab/LessonTabGroups";
+import { Navigate, Route, Routes, useNavigate  } from "react-router-dom";
+import { ROUTE } from "../../../routes";
 
 //TODO В пропсах число получаем от 0 до 10. Написать на ts проверку на диапазон
 export const LessonTab = observer(() => {
@@ -52,23 +52,12 @@ export const LessonTab = observer(() => {
     lessonTabStore.modalImg,
     lessonTabStore.modalText,
   ];
+  const navigate = useNavigate();
+
   const girlImg = `${process.env.PUBLIC_URL}/girls/${
     girlsInPossessionStore.selectedGirl.id
   }/${GirlImgPath[modalImg as keyof GirlImg]}`;
 
-
-
-  const showLesson = () => {
-    switch (showMode) {
-      case (ShowMode.groups): {
-        return <LessonTabGroups />
-      }
-      case(ShowMode.singles): {
-        return <LessonTabSingles />
-      }
-    }
-
-  }
   return (
     <Grid
       minH={"100%"}
@@ -130,6 +119,7 @@ export const LessonTab = observer(() => {
           <Button
             onClick={() => {
               setShowMode(ShowMode.groups);
+              navigate(ROUTE.LESSON.GROUPS.PATTERN);
             }}
             colorScheme={showMode === ShowMode.groups ? "green" : "blue"}
             border="1px solid"
@@ -141,6 +131,7 @@ export const LessonTab = observer(() => {
           <Button
             onClick={() => {
               setShowMode(ShowMode.singles);
+              navigate(ROUTE.LESSON.SINGLE.PATTERN);
             }}
             colorScheme={showMode === ShowMode.singles ? "green" : "blue"}
             border="1px solid"
@@ -162,13 +153,20 @@ export const LessonTab = observer(() => {
           </Button>
         </VStack>
       </GridItem>
-      {showLesson()}      
+      <Routes>
+        <Route path={ROUTE.LESSON.GROUPS.PATTERN} element={<LessonTabGroups />} />
+        <Route path={ROUTE.LESSON.SINGLE.PATTERN} element={<LessonTabSingles />} />  
+        <Route path={'*'} element={
+                <Navigate to={ROUTE.LESSON.SINGLE.PATTERN} replace={true} />
+              } />        
+      </Routes>     
       <ActionModal
         isOpen={modalIsOpen}
         onClose={() => setModalIsOpen(false)}
         img={girlImg}
         text={modalText}
       />
+
     </Grid>
   );
 });

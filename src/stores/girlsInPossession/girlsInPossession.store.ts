@@ -5,7 +5,7 @@ const firstGirl:Girl  = {
   id: 'Hanabi',
   name: 'Ханаби',
   mood: 6,
-  energy: 4,  
+  energy: 4,
   exp: {
     HJ: {
       level: 0,
@@ -108,7 +108,41 @@ const firstGirl:Girl  = {
       level: 0,
       exp: 0
     }
-  },  
+  },
+  mental: {
+    lewd: {
+      name: 'Пошлость',
+      value: 0
+    },
+    stick: {
+      name: 'Кнут',
+      value: 0
+    },
+    carrot: {
+      name: 'Пряник',
+      value: 0
+    },
+    taming: {
+      name: 'Укрощение',
+      value: 0
+    },
+    habituality: {
+      name: 'Время',
+      value: 0
+    },
+    arrogance: {
+      name: 'Гордость',
+      value: 3
+    },
+    fearlessness: {
+      name: 'Бесстрашие',
+      value: 3
+    },
+    intelligence: {
+      name: 'Интеллект',
+      value: 4
+    }
+  }
 }
 
 class Store {

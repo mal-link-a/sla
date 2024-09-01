@@ -4,6 +4,7 @@ import { MainWithImage } from "../../components/MainWithImage/MainWithImage";
 import { LessonTab } from "../../features/LessonTab";
 import { Pages } from "../../stores/Base/model/types";
 import { CustomerOrders } from "../../features/CustomerOrders/ui/CustomerOrders";
+import { InfluenceTab } from "../../features/InfluenceTab/ui/InfluenceTab";
 
 
 export const Main = observer(() => {
@@ -15,6 +16,9 @@ export const Main = observer(() => {
       }
       case Pages.сustomerOrders: {
         return <CustomerOrders />;
+      }
+      case Pages.influence: {
+        return <InfluenceTab />;
       }
     }
   };
