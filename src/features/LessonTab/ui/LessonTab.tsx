@@ -30,10 +30,6 @@ export const LessonTab = observer(() => {
     current,
     energy,
     money,
-    modalIsOpen,
-    setModalIsOpen,
-    modalImg,
-    modalText,
   ] = [
     lessonTabStore.infoMode,
     lessonTabStore.switchInfoMod,
@@ -44,12 +40,7 @@ export const LessonTab = observer(() => {
     girlsInPossessionStore.selectedGirl,
     protagonistStore.energy,
     protagonistStore.money,
-    lessonTabStore.modalIsOpen,
-    lessonTabStore.setModalIsOpen,
-    lessonTabStore.modalImg,
-    lessonTabStore.modalText,
   ];
-  const navigate = useNavigate();
 
   const tabs = [
     {
@@ -65,11 +56,7 @@ export const LessonTab = observer(() => {
       img: `${process.env.PUBLIC_URL}/girls/${girlsInPossessionStore.selectedGirl.id}/_normal.png`,
     },    
   ];
-
-  const girlImg = `${process.env.PUBLIC_URL}/girls/${
-    girlsInPossessionStore.selectedGirl.id
-  }/${GirlImgPath[modalImg as keyof GirlImg]}`;
-
+ 
   return (
     <Grid
       minH={"100%"}
@@ -135,14 +122,8 @@ export const LessonTab = observer(() => {
         <Route path={'*'} element={
                 <Navigate to={ROUTE.LESSON.SINGLE.PATTERN} replace={true} />
               } />        
-      </Routes>     
-      <ActionModal
-        isOpen={modalIsOpen}
-        onClose={() => setModalIsOpen(false)}
-        img={girlImg}
-        text={modalText}
-      />
-
+      </Routes>    
+      
     </Grid>
   );
 });

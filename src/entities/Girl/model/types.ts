@@ -66,12 +66,14 @@ export type MentalSimple = {
 
 export interface GirlMentalsSimple {  
   lewd: MentalSimple, //похоть?
-  stick: MentalSimple, //Кнут - отрицательная порча
-  carrot: MentalSimple, //Пряник - положительная порча
+  stickAttitude: MentalSimple, //Отношение к наказаниям 0-Вера в неприкасаемость 5 вера в несправедливые наказания
+  carrotAttitude: MentalSimple, //Отношение к поощрениям 0-Вера в отсутствие поощрений 5 вера в несправедливые поощрения
   taming: MentalSimple, //Укрощение. Пока считаем как порог, за пределами которого сущность портится кнутом или пряником
+
   habituality: MentalSimple, //Привычка - время
   arrogance: MentalSimple, //Гордость-без гордости
   fearlessness: MentalSimple, //Бесстрашие-трусость = модификатор воздействия наказаний
   intelligence: MentalSimple, //Интеллект
+  obedience: MentalSimple,
 }
 //Темперамент отдельно

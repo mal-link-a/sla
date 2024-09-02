@@ -114,11 +114,11 @@ const firstGirl:Girl  = {
       name: 'Пошлость',
       value: 0
     },
-    stick: {
+    stickAttitude: {
       name: 'Кнут',
       value: 0
     },
-    carrot: {
+    carrotAttitude: {
       name: 'Пряник',
       value: 0
     },
@@ -141,6 +141,10 @@ const firstGirl:Girl  = {
     intelligence: {
       name: 'Интеллект',
       value: 4
+    },
+    obedience: {
+      name: 'Послушность',
+      value: 0
     }
   }
 }

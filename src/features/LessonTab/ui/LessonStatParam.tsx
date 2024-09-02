@@ -7,7 +7,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import { expBase, statLevelColor } from "../../../entities/Girl";
+import { expBase, GirlImg, GirlImgPath, statLevelColor } from "../../../entities/Girl";
 import { lessonTabStore } from "../model/lessonTab.store";
 import { lessonExecution } from "../lib/lessonExecution";
 import { observer } from "mobx-react-lite";
@@ -19,6 +19,8 @@ import {
   StudiedStatWithСondition,
 } from "../../../entities/StudiedStats";
 import { checkConditions } from "../../../generalEvents/checkConditions";
+import { baseStore } from "../../../stores/Base/base.store";
+import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
 
 interface Props {
   keyName: string;
@@ -32,6 +34,11 @@ interface Props {
 export const LessonStatParam: FC<Props> = observer(
   ({ keyName, level, exp, name, description }) => {
     const infoMode = lessonTabStore.infoMode;
+    
+    const girlImg = `${process.env.PUBLIC_URL}/girls/${
+      girlsInPossessionStore.selectedGirl.id
+    }/${GirlImgPath[keyName as keyof GirlImg]}`;
+
     const toast = useToast();
     const showFailedToast = (text: string) => {
       toast({
@@ -68,14 +75,10 @@ export const LessonStatParam: FC<Props> = observer(
             showFailedToast(conditionCheck);
             return;
           }
-        }
-        lessonTabStore.setModalIsOpen(true, keyName);
+        }        
         let isLvlUp = lessonExecution(keyName, level, exp);
-        lessonTabStore.setModalIsOpen(
-          true,
-          keyName,
-          getStudyText(keyName, level, isLvlUp)
-        );
+        baseStore.setModalData(true, girlImg, getStudyText(keyName, level, isLvlUp));
+       
       } else {
         showFailedToast(energyCheck);
         return;

@@ -18,6 +18,20 @@ class Store {
     if (this.imgSrc !== imgsrc)
     this.imgSrc = imgsrc;
   };
+
+  //Модалка
+  @observable modalIsOpen: boolean = false;
+  @observable modalImage: string = "";
+  @observable modalText: string = ""; 
+
+  @action setModalData = (flag: boolean, imgPath?: string, text?: string) => {
+    this.modalIsOpen = flag;
+    if (imgPath && text) {
+      this.modalImage=imgPath
+      this.modalText=text
+    }
+  }
+
 }
 
 export const baseStore = new Store();
