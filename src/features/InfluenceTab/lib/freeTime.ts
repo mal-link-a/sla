@@ -1,5 +1,6 @@
 //Играем во свободное время. РАБотник будет радоваться
 //И даже начинать думать, что ты добрый... Беспроигрышная тема
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
 import { baseStore } from "../../../stores/Base/base.store";
@@ -12,12 +13,10 @@ export const freeTime = (tier: number) => {
     {},
     slaveStore.slave.mental
   );
-  let img = `${process.env.PUBLIC_URL}/officeSlave/happy1.png`;
+  const img = `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.happy1}`;
   const request = texts.freeTime.text[tier].action + "\n";
   let response = contributionText.ExcessiveReward;
-  if (tier !== 1) {
-    img = `${process.env.PUBLIC_URL}/officeSlave/outside.png`;
-  }
+
 
   const result = checkContribution((tier + 1) * 2);
   switch (result) {

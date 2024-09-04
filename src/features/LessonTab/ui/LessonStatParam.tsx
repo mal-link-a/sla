@@ -7,7 +7,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import { expBase, GirlImg, GirlImgPath, statLevelColor } from "../../../entities/Girl";
+import { expBase,  SlaveImg,  statLevelColor } from "../../../entities/Girl";
 import { lessonTabStore } from "../model/lessonTab.store";
 import { lessonExecution } from "../lib/lessonExecution";
 import { observer } from "mobx-react-lite";
@@ -21,6 +21,8 @@ import {
 import { checkConditions } from "../../../generalEvents/checkConditions";
 import { baseStore } from "../../../stores/Base/base.store";
 import { slaveStore } from "../../../stores/slave/slave.store";
+import { checkMotivation } from "../lib/checkMotivation";
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 
 interface Props {
   keyName: string;
@@ -37,7 +39,7 @@ export const LessonStatParam: FC<Props> = observer(
     
     const girlImg = `${process.env.PUBLIC_URL}/girls/${
       slaveStore.slave.id
-    }/${GirlImgPath[keyName as keyof GirlImg]}`;
+    }/${slaveImg[keyName as keyof SlaveImg]}`;
 
     const toast = useToast();
     const showFailedToast = (text: string) => {
@@ -64,6 +66,7 @@ export const LessonStatParam: FC<Props> = observer(
         });
         return;
       }
+      console.log(1);
       const energyCheck = girlSpendingStamina(1);
       if (!energyCheck) {
         const needConditionCheck = studiedSpecialStats[
@@ -75,9 +78,17 @@ export const LessonStatParam: FC<Props> = observer(
             showFailedToast(conditionCheck);
             return;
           }
-        }        
-        let isLvlUp = lessonExecution(keyName, level, exp);
-        baseStore.setModalData(true, girlImg, getStudyText(keyName, level, isLvlUp));
+        }  
+        console.log(2);
+        const motivationCheck = checkMotivation();
+        if (motivationCheck === -1) {
+          console.log(4);
+
+          return;
+        }
+        console.log(3);
+        let isLvlUp = lessonExecution(keyName, level, exp, motivationCheck);
+        baseStore.setModalData(true, girlImg, getStudyText(keyName, level, isLvlUp, motivationCheck));
        
       } else {
         showFailedToast(energyCheck);

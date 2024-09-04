@@ -9,7 +9,7 @@ import { SkillBoxGroup } from "./SkillBoxGroup";
 
 export const LessonTabGroups = observer(() => {
   const [currentGroup, setGroup] =
-    useState<keyof ComplicatedStats>("normalSex");
+    useState<keyof ComplicatedStats>("showman");
 
 
 

@@ -1,5 +1,6 @@
 //Физические наказания. Если что, осуждаю.
 //Рукоприкладство в любой форме почти так же ужасно, как родиться чёрным
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
 import { baseStore } from "../../../stores/Base/base.store";
@@ -12,7 +13,7 @@ export const flagellation = (tier: number) => {
     {},
     slaveStore.slave.mental
   );
-  const img = `${process.env.PUBLIC_URL}/officeSlave/cry1.png`;
+  const img = `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.sad2}`;
   const request = texts.flagellation.text[tier].action + "\n";
   let response = contributionText.ExcessivePunishment;
 

@@ -4,7 +4,7 @@ import { MentalStats } from '../../entities/MentalStats/model/types';
 import { mentalStats } from '../../entities/MentalStats/model/mentalStats';
 
 const firstGirl:Girl  = {
-  id: 'Hanabi',
+  id: 'officeSlave',
   name: 'Ханаби',
   energy: 3,
   exp: {

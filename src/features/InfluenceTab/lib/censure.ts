@@ -1,3 +1,4 @@
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
 import { baseStore } from "../../../stores/Base/base.store";
@@ -12,7 +13,7 @@ export const censure = (tier: number) => {
     {},
     slaveStore.slave.mental
   );
-  const img = `${process.env.PUBLIC_URL}/officeSlave/cry1.png`;
+  const img = `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.sad1}`;
   const request = texts.censure.text[tier].action;
   let response = contributionText.ExcessivePunishment;
 

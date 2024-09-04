@@ -13,16 +13,16 @@ export const ROUTE = {
         }    
     },
     WORK: {
-        PATH: '/work/*',
-        PATTERN: 'work/*',
-        PARTTIME: {
-            PATTERN: 'part-time',
-            PATH: '/work/part-time',      
-        },          
+        PATH: '/work',
+        PATTERN: 'work/*',                 
     },
     INFLUENCE: {
-        PATH: '/influence/*',
+        PATH: '/influence',
         PATTERN: 'influence/*',
+    },
+    ABOUT: {
+        PATH: '/about',
+        PATTERN: 'about/*',
     }
   } as const;
   

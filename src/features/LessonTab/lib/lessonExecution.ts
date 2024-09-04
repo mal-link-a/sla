@@ -4,7 +4,8 @@ import { slaveStore } from "../../../stores/slave/slave.store";
 export const lessonExecution = (  
   keyName: string,
   level: number,
-  exp: number
+  exp: number,
+  motivation: number,
 ) => {
   let isLvlup = false;
   const val: any = {level,exp:exp+25};  

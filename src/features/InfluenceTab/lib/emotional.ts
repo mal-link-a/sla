@@ -1,4 +1,5 @@
 //Понятия не имею, но пока выглядит как сброс бомбы на голову работника
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { baseStore } from "../../../stores/Base/base.store";
 import { slaveStore } from "../../../stores/slave/slave.store";
@@ -9,7 +10,7 @@ export const emotional = (tier: number) => {
     {},
     slaveStore.slave.mental
   );
-  const img = `${process.env.PUBLIC_URL}/officeSlave/happy2.png`;
+  const img = `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.happy3}`;
   const request = texts.emotional.text[tier].action + "\n";
   let response = contributionText.SufficientReward;
 

@@ -37,8 +37,15 @@ export type StudiedNormalStats = {
 export type StudiedStats = StudiedNormalStats & StudiedSpecialStats;
 //Комплексные типы
 export interface ComplicatedStats {
-  normalSex: ComplicatedStat;
-  paranormalSex: ComplicatedStat;
+  showman: ComplicatedStat;
+  factoryman: ComplicatedStat;
+  constructor: ComplicatedStat;
+  secretary: ComplicatedStat;
+  boss: ComplicatedStat;
+  doctor: ComplicatedStat;
+  sysadmin: ComplicatedStat;
+  programmer: ComplicatedStat;
+  paragon: ComplicatedStat;
 }
 
 export interface ComplicatedStat extends StudiedStat {

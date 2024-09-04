@@ -1,16 +1,15 @@
 import { Flex, Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import { GirlImgPath } from "../../entities/Girl";
 import { observer } from "mobx-react-lite";
 import { slaveMood } from "../../entities/Girl/model/slaveMood";
 import { slaveStore } from "../../stores/slave/slave.store";
+import { slaveImg } from "../../entities/Girl/model/imgPath";
 
 interface Props {
   isColumn?: boolean;
 }
-
 export const SlaveOrdinaryInfo = observer(({ isColumn = true }: Props) => {
   const [slave, energy] = [slaveStore.slave, slaveStore.slave.energy];
-  const slaveImg = `${process.env.PUBLIC_URL}/girls/${slave.id}/${GirlImgPath.avatar}`;
+  const img = `${process.env.PUBLIC_URL}/girls/${slave.id}/${slaveImg.avatar}`;
 
   const energyIndicator = () => {
     let components = [];
@@ -39,7 +38,7 @@ export const SlaveOrdinaryInfo = observer(({ isColumn = true }: Props) => {
       border={"1px solid black"}
       gap={0}
     >
-      <Image border={"6px groove #a1a1a1"} h="150px" w="150px" src={slaveImg} />
+      <Image border={"6px groove #a1a1a1"} h="150px" w="150px" src={img} />
       <VStack justifyContent={"center"} minW={"50%"}>
         <Text>{slave.name} </Text>
         <Text>{slaveMood[slave.mental.mood]} </Text>

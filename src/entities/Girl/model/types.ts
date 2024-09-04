@@ -25,30 +25,19 @@ export type GirlExperience = Record<keyof StudiedSpecialStats | keyof StudiedNor
 export type GirlBaseImg = {
   avatar: string;
   normal: string;
+  reject: string
 };
-export type GirlImg = GirlBaseImg & Record<keyof StudiedSpecialStats | keyof StudiedNormalStats, string>;
-
-export const GirlImgPath: GirlImg = {
-  avatar: "_avatar.png",
-  normal: "_normal.png",
-  singing: "",
-  dance: "",
-  systemAdministration: "",
-  programming: "",
-  coffeeBrewing: "",
-  doctoring: "",
-  firstAid: "",
-  surgery: "",
-  driving: "",
-  userPC: "",
-  management: "",
-  preventionOfAccidents: "",
-  construction: "",
-  heavyMachinery: "",
-  factoryMachines: "",
-  technicalProcess: "",
-
+export type GirlRewardImg = {
+  happy1: string;
+  happy2: string;
+  happy3: string
 };
+export type GirlPunishmentImg = {
+  sad1: string;
+  sad2: string;
+  sad3: string
+};
+export type SlaveImg = GirlBaseImg & GirlRewardImg & GirlPunishmentImg & Record<keyof StudiedSpecialStats | keyof StudiedNormalStats, string>;
 
 //Менталка
 export type GirlMental = Record<keyof MentalStats, number> 

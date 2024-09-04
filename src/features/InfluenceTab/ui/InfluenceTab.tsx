@@ -16,6 +16,7 @@ import { moodText, obedienceText } from "../model/obedienceText";
 import { slaveStore } from "../../../stores/slave/slave.store";
 
 export const InfluenceTab = observer(() => {
+  const obediensekey = Math.max(slaveStore.slave.mental.obedience-slaveStore.slave.mental.rejection, 0);
   return (
     <>
     <Grid mb={2}
@@ -37,7 +38,7 @@ export const InfluenceTab = observer(() => {
       <SlaveOrdinaryInfo isColumn={false}/>
       <Box p={2} flexGrow={1} border="1px solid #5CA415">
       <Text>{moodText[slaveStore.slave.mental.mood]}</Text>
-      <Text>{obedienceText[slaveStore.slave.mental.obedience]}</Text>
+      <Text>{obedienceText[obediensekey]}</Text>
       </Box>
       
     </Flex>

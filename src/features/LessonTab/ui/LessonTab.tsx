@@ -10,6 +10,7 @@ import { LessonTabGroups } from "./GroupTab/LessonTabGroups";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ROUTE } from "../../../routes";
 import { NavigationTabs } from "../../../components/NavigationTabs.tsx/NavigationTabs";
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 
 //TODO В пропсах число получаем от 0 до 10. Написать на ts проверку на диапазон
 export const LessonTab = observer(() => {
@@ -26,13 +27,13 @@ export const LessonTab = observer(() => {
       id: ShowMode.single,
       pattern: ROUTE.LESSON.SINGLE.PATTERN,
       label: "Простой",
-      img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/_normal.png`,
+      img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.normal}`,
     },
     {
       id: ShowMode.groups,
       pattern: ROUTE.LESSON.GROUPS.PATTERN,
       label: "Группы",
-      img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/_normal.png`,
+      img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.normal}`,
     },
   ];
 

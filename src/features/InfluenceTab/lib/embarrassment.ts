@@ -1,5 +1,6 @@
 //Наказание стыдом. ИРЛ, наверное, пустило бы все надежды нормально работать в компании под откос
 //
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
 import { baseStore } from "../../../stores/Base/base.store";
@@ -12,7 +13,7 @@ export const embarrassment = (tier: number) => {
     {},
     slaveStore.slave.mental
   );
-  const img = `${process.env.PUBLIC_URL}/officeSlave/cry2.png`;
+  const img = `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.sad3}`;
   const request = texts.embarrassment.text[tier].action + "\n";
   let response = contributionText.SufficientPunishment;
 

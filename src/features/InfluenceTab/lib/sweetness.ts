@@ -9,7 +9,11 @@ export const sweetness = (tier: number) => {
     {},
     slaveStore.slave.mental
   );
-  const img = `${process.env.PUBLIC_URL}/officeSlave/happy2.png`;
+  let img = `${process.env.PUBLIC_URL}/other/choco.jpg`;
+  if (tier===2)
+    img = `${process.env.PUBLIC_URL}/other/cake.jpg`;
+  if (tier===1)
+    img = `${process.env.PUBLIC_URL}/other/iceCream.jpg`;
   const request = texts.sweetness.text[tier].action + "\n";
   let response = contributionText.SufficientReward;
   girlMental.mood = girlMental.mood + 2;

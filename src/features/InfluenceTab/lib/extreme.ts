@@ -1,5 +1,7 @@
 //Совершенно ненормальные методы воздействия
 //Которые, наверное, не должны работать
+//Но работают, потому что у нас тут фэнтэзи!
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { baseStore } from "../../../stores/Base/base.store";
 import { slaveStore } from "../../../stores/slave/slave.store";
@@ -10,7 +12,7 @@ export const extreme = (tier: number) => {
     {},
     slaveStore.slave.mental
   );
-  const img = `${process.env.PUBLIC_URL}/officeSlave/cry2.png`;
+  const img = `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.sad3}`;
   const request = texts.extreme.text[tier].action + "\n";
   let response = contributionText.ExcessivePunishment;
 
