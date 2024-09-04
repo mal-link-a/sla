@@ -1,19 +1,17 @@
-import {
-  studiedSexStats,
-} from "../../../entities/StudiedStats/model/sexStats";
-import { StudiedSexStats } from "../../../entities/StudiedStats/model/types";
-import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
+import { studiedAllStats } from "../../../entities/StudiedStats/model/allStats";
+import {   StudiedStats } from "../../../entities/StudiedStats/model/types";
+import { slaveStore } from "../../../stores/slave/slave.store";
 
 export const getStudyText = (
   key: string,
   currentLevel: number,
   lvlUp: boolean
 ) => {
-  const name = girlsInPossessionStore.selectedGirl.name;
+  const name = slaveStore.slave.name;
   const pattern = /<<slave_name>>/gi;
   const lvlupSrt =
-    "\n  В результате занятий вам удалось значительно продвинуться. Воспитуемая успешно освоила темы нынешнего урока и готова к новым высотам.";
-  const studyText = studiedSexStats[key as keyof StudiedSexStats].lessonText[
+    "\n  В результате занятий вам удалось значительно продвинуться. Воспитуемый успешно освоил темы нынешнего урока и готов к новым высотам.";
+  const studyText = studiedAllStats[key as keyof StudiedStats].lessonText[
     currentLevel
   ].replace(pattern, name);
 

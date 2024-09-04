@@ -1,7 +1,7 @@
 import { Box, Heading, Flex } from "@chakra-ui/react"
 import { GirlExperience } from "../../../../entities/Girl";
 import { studiedAllStats } from "../../../../entities/StudiedStats/model/allStats";
-import { girlsInPossessionStore } from "../../../../stores/girlsInPossession/girlsInPossession.store";
+import { slaveStore } from "../../../../stores/slave/slave.store";
 import { LessonStatParam } from "../LessonStatParam";
 import { ComplicatedStat, complicatedStats, ComplicatedStats } from "../../../../entities/StudiedStats";
 
@@ -26,7 +26,7 @@ export const SkillItemGroup=({keyName, header, techLevel}: Props) => {
               item[1].description,
             ];
             const experience =
-              girlsInPossessionStore.selectedGirl.exp[
+              slaveStore.slave.exp[
                 keyName as keyof GirlExperience
               ];
             return (

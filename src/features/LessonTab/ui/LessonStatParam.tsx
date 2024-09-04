@@ -14,13 +14,13 @@ import { observer } from "mobx-react-lite";
 import { girlSpendingStamina } from "../../../generalEvents/girlSpendingStamina";
 import { getStudyText } from "../lib/getStudyText";
 import {
-  StudiedSexStats,
-  studiedSexStats,
+  StudiedSpecialStats,
+  studiedSpecialStats,
   StudiedStatWithСondition,
 } from "../../../entities/StudiedStats";
 import { checkConditions } from "../../../generalEvents/checkConditions";
 import { baseStore } from "../../../stores/Base/base.store";
-import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
+import { slaveStore } from "../../../stores/slave/slave.store";
 
 interface Props {
   keyName: string;
@@ -36,7 +36,7 @@ export const LessonStatParam: FC<Props> = observer(
     const infoMode = lessonTabStore.infoMode;
     
     const girlImg = `${process.env.PUBLIC_URL}/girls/${
-      girlsInPossessionStore.selectedGirl.id
+      slaveStore.slave.id
     }/${GirlImgPath[keyName as keyof GirlImg]}`;
 
     const toast = useToast();
@@ -66,10 +66,10 @@ export const LessonStatParam: FC<Props> = observer(
       }
       const energyCheck = girlSpendingStamina(1);
       if (!energyCheck) {
-        const needConditionCheck = studiedSexStats[
-          keyName as keyof StudiedSexStats
+        const needConditionCheck = studiedSpecialStats[
+          keyName as keyof StudiedSpecialStats
         ] as StudiedStatWithСondition;
-        if (needConditionCheck.conditions?.length > 0) {
+        if (needConditionCheck?.conditions?.length > 0) {
           let conditionCheck = checkConditions(needConditionCheck.conditions);
           if (conditionCheck) {
             showFailedToast(conditionCheck);

@@ -7,16 +7,6 @@ class Store {
 
   @observable money: number = 10000;
 
-  @observable energy: number = 5;
-  @observable maxEnergy: number = 5;
-
-  @action spendEnergy = () => {
-    --this.energy;
-  };
-  @action restoreEnergy = () => {
-    this.energy = this.maxEnergy;
-  };
-
   @action earnMoney = (value: number) => {
     this.money = this.money + value;
   };

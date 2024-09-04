@@ -1,38 +1,39 @@
 import { GridItem } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import { StatType } from "../../../entities/StudiedStats";
-import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
+import { slaveStore } from "../../../stores/slave/slave.store";
 import { GirlExperience } from "../../../entities/Girl";
 import { LessonStatParam } from "./LessonStatParam";
 import { studiedAllStats } from "../../../entities/StudiedStats/model/allStats";
+import { studiedNormalStatsKeys } from "../../../entities/StudiedStats/model/normalStats";
+import { studiedSpecialStatsKeys } from "../../../entities/StudiedStats";
 
-export const LessonTabSingles = observer(() => {
-  const getData = (val: StatType) => {
-    return Object.entries(studiedAllStats)
-      .filter((item) => item[1].type === val)
-      .map((item) => {
-        const [keyName, name, description] = [
-          item[0],
-          item[1].name,
-          item[1].description,
+const getData = (val: string[]) => {
+  return Object.entries(studiedAllStats)
+    .filter((item) => val.includes(item[0]))
+    .map((item) => {
+      const [keyName, name, description] = [
+        item[0],
+        item[1].name,
+        item[1].description,
+      ];
+      const experience =
+        slaveStore.slave.exp[
+          keyName as keyof GirlExperience
         ];
-        const experience =
-          girlsInPossessionStore.selectedGirl.exp[
-            keyName as keyof GirlExperience
-          ];
-        return (
-          <LessonStatParam
-            key={keyName}
-            keyName={keyName}
-            name={name}
-            description={description}
-            level={experience.level}
-            exp={experience.exp}
-          />
-        );
-      });
-  };
+      return (
+        <LessonStatParam
+          key={keyName}
+          keyName={keyName}
+          name={name}
+          description={description}
+          level={experience.level}
+          exp={experience.exp}
+        />
+      );
+    });
+};
 
+export const LessonTabSingles = observer(() => { 
   return (
     <>
       <GridItem
@@ -43,10 +44,10 @@ export const LessonTabSingles = observer(() => {
         bg="papayawhip"
       >
         <GridItem display={"flex"} flexDir={"column"} alignItems={"center"}>
-          {getData(StatType.sexual)}
+          {getData(studiedNormalStatsKeys)}
         </GridItem>
         <GridItem display={"flex"} flexDir={"column"}>
-          {getData(StatType.normal)}
+          {getData(studiedSpecialStatsKeys)}
         </GridItem>
       </GridItem>
     </>

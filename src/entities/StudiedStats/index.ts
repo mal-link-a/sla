@@ -1,2 +1,2 @@
-export * from './model/sexStats';
+export * from './model/specialStats';
 export * from './model/types';

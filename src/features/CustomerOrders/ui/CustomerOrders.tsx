@@ -2,8 +2,8 @@ import { FC } from "react";
 import { Box, Button, Flex, Grid, VStack, Text, HStack, useToast } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { protagonistStore } from "../../../stores/protagonist/protagonist.store";
-import { GirlOrdinaryInfo } from "../../../components/GirlOrdinaryInfo/GirlOrdinaryInfo";
-import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
+import { SlaveOrdinaryInfo } from "../../../components/SlaveOrdinaryInfo/SlaveOrdinaryInfo";
+import { slaveStore } from "../../../stores/slave/slave.store";
 import { girlSpendingStamina } from "../../../generalEvents/girlSpendingStamina";
 
 
@@ -16,7 +16,7 @@ const onClickWork = () => {
   if (!check) {
     //Работа
     protagonistStore.earnMoney(100);
-    girlsInPossessionStore.spendEnergy();
+    slaveStore.spendEnergy();
   } else {
     toast({
       title: "Не выполнено",
@@ -27,7 +27,6 @@ const onClickWork = () => {
     });
   }
 }
-console.log('render CustomerOrders');
   return (
     <Grid
     minH="100%"
@@ -40,7 +39,7 @@ console.log('render CustomerOrders');
         <Box>
           <Text>Выбрать работника</Text>
           <HStack>
-          <GirlOrdinaryInfo girl={girlsInPossessionStore.selectedGirl}/>
+          <SlaveOrdinaryInfo/>
           </HStack>
         </Box>
         <Button onClick={onClickWork} colorScheme='red'>Работать</Button>

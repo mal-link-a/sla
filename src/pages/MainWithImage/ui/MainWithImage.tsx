@@ -1,12 +1,13 @@
-import { Grid, GridItem, Image } from "@chakra-ui/react";
+import { Button, Grid, GridItem, HStack, Image } from "@chakra-ui/react";
 import { FC } from "react";
 import { baseStore } from "../../../stores/Base/base.store";
 import { observer } from "mobx-react-lite";
 import { NavigationTabs } from "../../../components/NavigationTabs.tsx/NavigationTabs";
 import { Pages } from "../../../stores/Base/model/types";
 import { ROUTE } from "../../../routes";
-import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
+import { slaveStore } from "../../../stores/slave/slave.store";
 import { ActionModal } from "../../../components/ActionModal/ActionModal";
+import { dayEnd } from "../../../generalEvents/dayEnd";
 
 interface Props {
   children: React.ReactNode;
@@ -17,7 +18,7 @@ const tabs = [
     id: Pages.lesson,
     pattern: ROUTE.LESSON.PATH,
     label: "Обучение",
-    img: `${process.env.PUBLIC_URL}/girls/${girlsInPossessionStore.selectedGirl.id}/_normal.png`,
+    img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/_normal.png`,
   },
   {
     id: Pages.сustomerOrders,
@@ -29,7 +30,7 @@ const tabs = [
     id: Pages.influence,
     pattern: ROUTE.INFLUENCE.PATH,
     label: "Воспитание",
-    img: `${process.env.PUBLIC_URL}/girls/${girlsInPossessionStore.selectedGirl.id}/_normal.png`,
+    img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/_normal.png`,
   },
 ];
 
@@ -41,7 +42,7 @@ export const MainWithImage: FC<Props> = observer(({ children }) => {
     baseStore.modalImage,
     baseStore.modalText,
   ];
-
+  
   return (
     <>
       <Grid templateColumns="25vw 75vw" templateRows=" 48px 1fr" gap={0}>
@@ -55,12 +56,18 @@ export const MainWithImage: FC<Props> = observer(({ children }) => {
           />
         </GridItem>
         <GridItem
+          display="flex"
+          flexDir={"row"}
+          justifyContent="space-between"
           border={"5px double #1C6EA4"}
           colSpan={1}
           rowSpan={1}
           bg="#F0F8FF"
-        >
+        >          
           <NavigationTabs tabs={tabs} />
+          <Button onClick={dayEnd}_hover={{background:"#000080"}} bg="#274487"color="#FFFFFF" alignSelf={"center"}>Закончить день</Button>
+          
+          
         </GridItem>
         <GridItem
           border={"5px double #1C6EA4"}

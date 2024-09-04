@@ -1,5 +1,5 @@
 import { studiedNormalStats } from "./normalStats";
-import { studiedSexStats } from "./sexStats";
+import { studiedSpecialStats } from "./specialStats";
 import { StudiedStats } from "./types";
 
-export const studiedAllStats:StudiedStats = Object.assign({},studiedSexStats, studiedNormalStats)
+export const studiedAllStats:StudiedStats = Object.assign({},studiedSpecialStats, studiedNormalStats)

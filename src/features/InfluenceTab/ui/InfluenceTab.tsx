@@ -1,42 +1,31 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+
 import {
-  Button,
-  ButtonGroup,
+  Flex,
+  Box,
   Grid,
   Heading,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Portal,
+  HStack,
   VStack,
+  Text,
 } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import { compliment } from "../lib/compliment";
-import { extreme } from "../lib/extreme";
-import { embarrassment } from "../lib/embarrassment";
-import { flagellation } from "../lib/flagellation";
-import { strictRules } from "../lib/strictRules";
-import { revocationOfPrivileges } from "../lib/revocationOfPrivileges";
-import { censure } from "../lib/censure";
-import { sweetness } from "../lib/sweetness";
-import { gift } from "../lib/gift";
-import { emotional } from "../lib/emotional";
-import { freeTime } from "../lib/freeTime";
-import { timeTogether } from "../lib/timeTogether";
 import { InfluenceMenuList } from "./InfluenceMenuList";
 import { InfluenceEnum } from "../model/types/types";
+import { SlaveOrdinaryInfo } from "../../../components/SlaveOrdinaryInfo/SlaveOrdinaryInfo";
+import { moodText, obedienceText } from "../model/obedienceText";
+import { slaveStore } from "../../../stores/slave/slave.store";
 
 export const InfluenceTab = observer(() => {
   return (
-    <Grid
-      templateColumns="repeat(2, 1fr)"
+    <>
+    <Grid mb={2}
+      templateColumns="repeat(2, 1fr)"      
       alignItems={"start"}
       justifyContent={"space-around"}
     >
       <VStack border="1px solid #5CA415">
         <Heading as="h3">Поощрения</Heading>
-        <InfluenceMenuList filterType={InfluenceEnum.positive} />
+        <InfluenceMenuList  filterType={InfluenceEnum.positive} />
       </VStack>
 
       <VStack border="1px solid #5CA415">
@@ -44,6 +33,16 @@ export const InfluenceTab = observer(() => {
         <InfluenceMenuList filterType={InfluenceEnum.negative} />
       </VStack>
     </Grid>
+    <Flex minW="100%">
+      <SlaveOrdinaryInfo isColumn={false}/>
+      <Box p={2} flexGrow={1} border="1px solid #5CA415">
+      <Text>{moodText[slaveStore.slave.mental.mood]}</Text>
+      <Text>{obedienceText[slaveStore.slave.mental.obedience]}</Text>
+      </Box>
+      
+    </Flex>
+    </>
+    
   );
   
 });

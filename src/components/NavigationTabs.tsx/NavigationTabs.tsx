@@ -20,7 +20,6 @@ export const NavigationTabs = ({ tabs, dir }: Props) => {
 
   function getDefault() {
     const routes = tabs.map((item: NavTab) => item.pattern);
-
     for (let i = 0; i < routes.length; i++) {
       if (location.pathname === routes[i]) return i;
     }

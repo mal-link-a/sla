@@ -6,8 +6,6 @@ export enum InfluenceEnum {
 export interface influenceText {
     name: string;
     action: string;
-    reaction: string;
-    reactionRepeat: string; //Много комплиментов
 }
     
 export interface influenceType {

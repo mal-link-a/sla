@@ -1,4 +1,4 @@
-export const girlMood: string[] = [
+export const slaveMood: string[] = [
   "Сломана",
   "На грани",
   "Депрессия",
@@ -6,8 +6,7 @@ export const girlMood: string[] = [
   "Грустит",
   "Дуется",
   "В норме",
-  "Улыбчива",
-  "Весела",
   "Умиротворена",
+  "Весела",
   "Счастлива",
 ];

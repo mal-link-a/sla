@@ -1,45 +1,24 @@
-import {
-  Button,
-  Grid,
-  GridItem,
-} from "@chakra-ui/react";
+import { Button, Grid, GridItem } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 
-import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
+import { slaveStore } from "../../../stores/slave/slave.store";
 import { lessonTabStore } from "../model/lessonTab.store";
-import { protagonistStore } from "../../../stores/protagonist/protagonist.store";
-import { GirlOrdinaryInfo } from "../../../components/GirlOrdinaryInfo/GirlOrdinaryInfo";
-import { ActionModal } from "../../../components/ActionModal/ActionModal";
+import { SlaveOrdinaryInfo } from "../../../components/SlaveOrdinaryInfo/SlaveOrdinaryInfo";
 import { ShowMode, Teacher } from "../model/types";
-import { GirlImg, GirlImgPath } from "../../../entities/Girl";
 import { LessonTabSingles } from "./LessonTabSingles";
 import { LessonTabGroups } from "./GroupTab/LessonTabGroups";
-import { Navigate, Route, Routes, useNavigate  } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ROUTE } from "../../../routes";
 import { NavigationTabs } from "../../../components/NavigationTabs.tsx/NavigationTabs";
 
 //TODO В пропсах число получаем от 0 до 10. Написать на ts проверку на диапазон
 export const LessonTab = observer(() => {
-  const [
-    infomode,
-    switchInfoMod,
-    teacher,
-    setTeacher,
-    showMode,
-    setShowMode,
-    current,
-    energy,
-    money,
-  ] = [
+  const [infomode, switchInfoMod, teacher, setTeacher, current] = [
     lessonTabStore.infoMode,
     lessonTabStore.switchInfoMod,
     lessonTabStore.teacher,
     lessonTabStore.setTeacher,
-    lessonTabStore.showMode,
-    lessonTabStore.setShowMode,
-    girlsInPossessionStore.selectedGirl,
-    protagonistStore.energy,
-    protagonistStore.money,
+    slaveStore.slave,
   ];
 
   const tabs = [
@@ -47,16 +26,16 @@ export const LessonTab = observer(() => {
       id: ShowMode.single,
       pattern: ROUTE.LESSON.SINGLE.PATTERN,
       label: "Простой",
-      img: `${process.env.PUBLIC_URL}/girls/${girlsInPossessionStore.selectedGirl.id}/_normal.png`,
+      img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/_normal.png`,
     },
     {
       id: ShowMode.groups,
       pattern: ROUTE.LESSON.GROUPS.PATTERN,
       label: "Группы",
-      img: `${process.env.PUBLIC_URL}/girls/${girlsInPossessionStore.selectedGirl.id}/_normal.png`,
-    },    
+      img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/_normal.png`,
+    },
   ];
- 
+
   return (
     <Grid
       minH={"100%"}
@@ -113,17 +92,23 @@ export const LessonTab = observer(() => {
         </Button>
       </GridItem>
       <GridItem h="100%" colSpan={1} bg="papayawhip">
-        <GirlOrdinaryInfo girl={current} />        
-        <NavigationTabs tabs={tabs} dir="column"/>
+        <SlaveOrdinaryInfo />
+        <NavigationTabs tabs={tabs} dir="column" />
       </GridItem>
       <Routes>
-        <Route path={ROUTE.LESSON.GROUPS.PATTERN} element={<LessonTabGroups />} />
-        <Route path={ROUTE.LESSON.SINGLE.PATTERN} element={<LessonTabSingles />} />  
-        <Route path={'*'} element={
-                <Navigate to={ROUTE.LESSON.SINGLE.PATTERN} replace={true} />
-              } />        
-      </Routes>    
-      
+        <Route
+          path={ROUTE.LESSON.GROUPS.PATTERN}
+          element={<LessonTabGroups />}
+        />
+        <Route
+          path={ROUTE.LESSON.SINGLE.PATTERN}
+          element={<LessonTabSingles />}
+        />
+        <Route
+          path={"*"}
+          element={<Navigate to={ROUTE.LESSON.SINGLE.PATTERN} replace={true} />}
+        />
+      </Routes>
     </Grid>
   );
 });

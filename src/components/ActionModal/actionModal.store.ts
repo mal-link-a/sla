@@ -7,7 +7,8 @@ class Store {
 
   @observable fontSize: number = 16;
 
-  @action fontPlus = () => {   
+  @action fontPlus = () => { 
+    if (this.fontSize <48)  
       this.fontSize = this.fontSize  + 1;
   };
   @action fontMinus = () => {

@@ -1,12 +1,12 @@
 import {
   StatCondition,
-  studiedSexStats,
-  StudiedSexStats,
+  studiedSpecialStats,
+  StudiedSpecialStats,
 } from "../entities/StudiedStats";
-import { girlsInPossessionStore } from "../stores/girlsInPossession/girlsInPossession.store";
+import { slaveStore } from "../stores/slave/slave.store";
 
 export const checkConditions = (conditions: StatCondition[]) => {
-  const girl = girlsInPossessionStore.selectedGirl;
+  const girl = slaveStore.slave;
 
   let failedConds: string[] = [];
   let check: boolean = false;
@@ -14,9 +14,9 @@ export const checkConditions = (conditions: StatCondition[]) => {
   for (let i = 0; i < conditions.length; i++) {
     let [param, value] = [conditions[i][0], conditions[i][1]];
 
-    if (param as keyof StudiedSexStats) {
-      if (girl.exp[param as keyof StudiedSexStats].level < value) {
-        failedConds.push(studiedSexStats[param as keyof StudiedSexStats].name);
+    if (param as keyof StudiedSpecialStats) {
+      if (girl.exp[param as keyof StudiedSpecialStats].level < value) {
+        failedConds.push(studiedSpecialStats[param as keyof StudiedSpecialStats].name);
         check = true;
       }
     }
@@ -24,7 +24,6 @@ export const checkConditions = (conditions: StatCondition[]) => {
   if (!check) {
     return false
   } else {
-    return ("Подопечная не готова. Сперва ей нужно подтянуть навыки: " + failedConds.join(", ")+ ".")
+    return ("Подопечный не готов. Сперва ему нужно подтянуть навыки: " + failedConds.join(", ")+ ".")
   }
 };
-

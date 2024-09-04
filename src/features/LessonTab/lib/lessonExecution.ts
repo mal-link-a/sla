@@ -1,5 +1,5 @@
 import { expBase,} from "../../../entities/Girl";
-import { girlsInPossessionStore } from "../../../stores/girlsInPossession/girlsInPossession.store";
+import { slaveStore } from "../../../stores/slave/slave.store";
 
 export const lessonExecution = (  
   keyName: string,
@@ -20,6 +20,6 @@ export const lessonExecution = (
   if (val.level === 10) {
     val.exp = 0;
   } 
-  girlsInPossessionStore.trainGirl(keyName, val);
+  slaveStore.trainGirl(keyName, val);
   return (isLvlup);
 };

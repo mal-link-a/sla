@@ -22,8 +22,7 @@ interface Props extends Omit<ModalProps, "children"> {
 export const ActionModal: FC<Props> = observer(({ img, text, ...modalProps }) => {
   const [fontSize, fontPlus, fontMinus] = [actionModalStore.fontSize,actionModalStore.fontPlus, actionModalStore.fontMinus];
   let textRef = useRef() as RefObject<HTMLDivElement> | null;
-  let imgRef = useRef() as RefObject<HTMLImageElement> | null;
-  
+  let imgRef = useRef() as RefObject<HTMLImageElement> | null;  
   
   const onClickfontPlus = () => {
     if (textRef?.current && imgRef?.current) {
@@ -36,7 +35,6 @@ export const ActionModal: FC<Props> = observer(({ img, text, ...modalProps }) =>
   return (
     <Modal isCentered {...modalProps}>
       <ModalOverlay />
-
       <ModalContent
         width={{ base: "90%", md: "90%" }}
         maxWidth="1200px"

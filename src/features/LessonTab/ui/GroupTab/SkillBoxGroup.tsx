@@ -1,11 +1,9 @@
 import { Box, Flex, Text, GridItem, Heading } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import { lessonGetDataForStatPanel } from "../../lib/lessonGetDataForStatPanel";
 import { ComplicatedStats, complicatedStats } from "../../../../entities/StudiedStats";
-import { girlsInPossessionStore } from "../../../../stores/girlsInPossession/girlsInPossession.store";
+import { slaveStore } from "../../../../stores/slave/slave.store";
 import { GirlExperience, statLevelColor, statLevelName } from "../../../../entities/Girl";
 import { FC } from "react";
-import { LessonStatParam } from "../LessonStatParam";
 import { studiedAllStats } from "../../../../entities/StudiedStats/model/allStats";
 import { SkillItemGroup } from "./SkillItemGroup";
 
@@ -14,7 +12,7 @@ interface Props {
 }
 export const SkillBoxGroup:FC<Props> = observer(({keyName}) => {
   const stats = complicatedStats[keyName];
-  const girl = girlsInPossessionStore.selectedGirl.exp
+  const girl = slaveStore.slave.exp
 
   const getCompicatedLevel = () =>{
     const getlvl = (arr: string[]) => {

@@ -42,9 +42,10 @@ export const theme = extendTheme({
     }, 
     Tabs: {
         baseStyle: {
-          tab: {            
+          tab: { 
+            height:"40px",           
             _focus: {              
-              color: 'white',
+              color: '#B0C4DE',
             },
             _selected: {
               color: 'white',
@@ -54,6 +55,8 @@ export const theme = extendTheme({
               },
             },
             _hover: {
+              background:"#000080",
+              color:"white"
                 
             },
           },
