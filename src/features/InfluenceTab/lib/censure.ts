@@ -1,7 +1,7 @@
 import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
-import { baseStore } from "../../../stores/Base/base.store";
+import { baseStore } from "../../../stores/Base/model/base.store";
 import { slaveStore } from "../../../stores/slave/slave.store";
 import { texts } from "../model/texts";
 import { checkContribution } from "./universal/checkContribution";
@@ -40,14 +40,17 @@ export const censure = (tier: number) => {
   switch (result) {
     case ContributionType.InsufficientPunishment: {
       response = contributionText.InsufficientPunishment;
+      girlMental.contribution= -1;
       break;
     }
     case ContributionType.ExcessivePunishment: {
       response = contributionText.ExcessivePunishment;
+      girlMental.contribution= 0;
       break;
     }
     case ContributionType.SufficientPunishment: {
       response = contributionText.ExcessivePunishment;
+      girlMental.contribution= 0;
       if (girlMental.mood < 6) {
         girlMental.mood--;
       }
@@ -57,16 +60,18 @@ export const censure = (tier: number) => {
       response = contributionText.UnfairPunishment;
       --girlMental.mood;
       ++girlMental.rejection;
+      girlMental.contribution= 3;
       break;
     }
     case ContributionType.UndeservedPunishment: {
       response = contributionText.UndeservedPunishment;
       girlMental.mood--;
       girlMental.rejection++;
+      girlMental.contribution= 5;
       break;
     }
   }
   slaveStore.changeMentalStats(girlMental);
-  baseStore.setModalData(true, img, request + response);
+  baseStore.setModalData(true, img, request + "\n" + response);
   slaveStore.spendEnergy();
 };

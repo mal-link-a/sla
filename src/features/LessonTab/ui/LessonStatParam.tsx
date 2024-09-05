@@ -11,18 +11,19 @@ import { expBase,  SlaveImg,  statLevelColor } from "../../../entities/Girl";
 import { lessonTabStore } from "../model/lessonTab.store";
 import { lessonExecution } from "../lib/lessonExecution";
 import { observer } from "mobx-react-lite";
-import { girlSpendingStamina } from "../../../generalEvents/girlSpendingStamina";
+import { girlSpendingStamina } from "../../../shared/check/girlSpendingStamina";
 import { getStudyText } from "../lib/getStudyText";
 import {
   StudiedSpecialStats,
   studiedSpecialStats,
   StudiedStatWithСondition,
 } from "../../../entities/StudiedStats";
-import { checkConditions } from "../../../generalEvents/checkConditions";
-import { baseStore } from "../../../stores/Base/base.store";
+import { checkConditions } from "../../../shared/check/checkConditions";
+import { baseStore } from "../../../stores/Base/model/base.store";
 import { slaveStore } from "../../../stores/slave/slave.store";
 import { checkMotivation } from "../lib/checkMotivation";
 import { slaveImg } from "../../../entities/Girl/model/imgPath";
+import { studiedAllStats } from "../../../entities/StudiedStats/model/allStats";
 
 interface Props {
   keyName: string;
@@ -54,7 +55,6 @@ export const LessonStatParam: FC<Props> = observer(
 
     const onClick = () => {
       toast.closeAll();
-      console.log(infoMode);
       if (infoMode) {
         toast({
           title: name,
@@ -66,27 +66,26 @@ export const LessonStatParam: FC<Props> = observer(
         });
         return;
       }
-      console.log(1);
       const energyCheck = girlSpendingStamina(1);
       if (!energyCheck) {
-        const needConditionCheck = studiedSpecialStats[
+        const needConditionCheck = studiedAllStats[
           keyName as keyof StudiedSpecialStats
         ] as StudiedStatWithСondition;
+        console.log(needConditionCheck);
         if (needConditionCheck?.conditions?.length > 0) {
+          
           let conditionCheck = checkConditions(needConditionCheck.conditions);
           if (conditionCheck) {
             showFailedToast(conditionCheck);
             return;
           }
         }  
-        console.log(2);
         const motivationCheck = checkMotivation();
         if (motivationCheck === -1) {
-          console.log(4);
-
+          showFailedToast("Сотрудник отказывается обучаться!");
+          slaveStore.changeContribution(-4);
           return;
         }
-        console.log(3);
         let isLvlUp = lessonExecution(keyName, level, exp, motivationCheck);
         baseStore.setModalData(true, girlImg, getStudyText(keyName, level, isLvlUp, motivationCheck));
        

@@ -8,12 +8,18 @@ interface Props {
   isColumn?: boolean;
 }
 export const SlaveOrdinaryInfo = observer(({ isColumn = true }: Props) => {
-  const [slave, energy] = [slaveStore.slave, slaveStore.slave.energy];
-  const img = `${process.env.PUBLIC_URL}/girls/${slave.id}/${slaveImg.avatar}`;
+  const [name, energy, contribution, mood, id] = [
+    slaveStore.slave.name,
+    slaveStore.slave.energy,
+    slaveStore.slave.mental.contribution,
+    slaveStore.slave.mental.mood,
+    slaveStore.slave.id,
+  ];
+  const img = `${process.env.PUBLIC_URL}/girls/${id}/${slaveImg.avatar}`;
 
   const energyIndicator = () => {
     let components = [];
-    let energyIsExist = slave.energy >= 0;
+    let energyIsExist = energy >= 0;
     for (
       let i = energyIsExist ? 0 : energy;
       energyIsExist ? i < energy : i < 0;
@@ -31,6 +37,10 @@ export const SlaveOrdinaryInfo = observer(({ isColumn = true }: Props) => {
     }
     return components;
   };
+
+  const contributionText = () => {
+    return contribution>0 ? `Отличился (${contribution})` : contribution < 0  ? `Провинился (${contribution})` : "Не ждёт награды";
+  };
   return (
     <Flex
       flexDir={isColumn ? "column" : "row"}
@@ -40,14 +50,15 @@ export const SlaveOrdinaryInfo = observer(({ isColumn = true }: Props) => {
     >
       <Image border={"6px groove #a1a1a1"} h="150px" w="150px" src={img} />
       <VStack justifyContent={"center"} minW={"50%"}>
-        <Text>{slave.name} </Text>
-        <Text>{slaveMood[slave.mental.mood]} </Text>
+        <Text>{name} </Text>
+        <Text>{slaveMood[mood]} </Text>
         <VStack border={"1px groove #a1a1a1"}>
           <Text>Энергия</Text>
           <HStack minH={4} mb={1} justify={"center"}>
             {energyIndicator()}
           </HStack>
         </VStack>
+        <Text>{contributionText()}</Text>
       </VStack>
     </Flex>
   );

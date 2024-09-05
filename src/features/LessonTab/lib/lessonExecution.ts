@@ -8,7 +8,7 @@ export const lessonExecution = (
   motivation: number,
 ) => {
   let isLvlup = false;
-  const val: any = {level,exp:exp+25};  
+  const val: any = {level,exp:exp+10*motivation};  
   while (true) {
     if (val.exp >= expBase[val.level] && val.level !== 5) {
       val.exp = val.exp - expBase[val.level];
@@ -21,6 +21,6 @@ export const lessonExecution = (
   if (val.level === 10) {
     val.exp = 0;
   } 
-  slaveStore.trainGirl(keyName, val);
+  slaveStore.trainGirl(keyName, val, motivation);
   return (isLvlup);
 };

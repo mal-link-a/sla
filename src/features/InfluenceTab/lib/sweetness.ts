@@ -1,6 +1,6 @@
 //Выглядит как беспроигрышный вариант, кроме тех. кто не любит сладкое.
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
-import { baseStore } from "../../../stores/Base/base.store";
+import { baseStore } from "../../../stores";
 import { slaveStore } from "../../../stores/slave/slave.store";
 import { texts } from "../model/texts";
 
@@ -17,6 +17,7 @@ export const sweetness = (tier: number) => {
   const request = texts.sweetness.text[tier].action + "\n";
   let response = contributionText.SufficientReward;
   girlMental.mood = girlMental.mood + 2;
+  girlMental.contribution= 0;
 
   slaveStore.changeMentalStats(girlMental);
   slaveStore.spendEnergy();

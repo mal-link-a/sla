@@ -1,7 +1,7 @@
 import { ResponsiveValue, Tab, Tabs } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { baseStore } from "../../stores/Base/base.store";
+import { baseStore } from "../../stores";
 import { Pages } from "../../stores/Base/model/types";
 import { NavTab } from "./model/types";
 

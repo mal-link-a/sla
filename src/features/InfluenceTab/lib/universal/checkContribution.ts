@@ -45,5 +45,5 @@ export const checkContribution = (val: number): ContributionType => {
     if (val>0 && сontribution===0)  {
         return ContributionType.UndeservedReward;
     }
-    throw new Error("Передан ноль в checkContribution");
+    return ContributionType.InsufficientReward;
 }

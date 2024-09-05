@@ -1,11 +1,11 @@
 import { GridItem } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import { slaveStore } from "../../../stores/slave/slave.store";
-import { GirlExperience } from "../../../entities/Girl";
-import { LessonStatParam } from "./LessonStatParam";
-import { studiedAllStats } from "../../../entities/StudiedStats/model/allStats";
-import { studiedNormalStatsKeys } from "../../../entities/StudiedStats/model/normalStats";
-import { studiedSpecialStatsKeys } from "../../../entities/StudiedStats";
+import { slaveStore } from "../../../../stores/slave/slave.store";
+import { GirlExperience } from "../../../../entities/Girl";
+import { LessonStatParam } from "../LessonStatParam";
+import { studiedAllStats } from "../../../../entities/StudiedStats/model/allStats";
+import { studiedNormalStatsKeys } from "../../../../entities/StudiedStats/model/normalStats";
+import { studiedSpecialStatsKeys } from "../../../../entities/StudiedStats";
 
 const getData = (val: string[]) => {
   return Object.entries(studiedAllStats)

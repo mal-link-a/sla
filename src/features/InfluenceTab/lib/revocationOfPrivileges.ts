@@ -1,8 +1,8 @@
 //Лишаем привилегий человека
 //
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
-import { baseStore } from "../../../stores/Base/base.store";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { baseStore, slaveStore } from "../../../stores";
 import { texts } from "../model/texts";
 
 export const revocationOfPrivileges = (tier: number) => {
@@ -10,7 +10,7 @@ export const revocationOfPrivileges = (tier: number) => {
     {},
     slaveStore.slave.mental
   );
-  const img = `${process.env.PUBLIC_URL}/officeSlave/cry1.png`;
+  const img = `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.sad1}`;
   const request = texts.revocationOfPrivileges.text[tier].action + "\n";
   let response = contributionText.SufficientPunishment;
   girlMental.mood = girlMental.mood + 2;
@@ -18,6 +18,7 @@ export const revocationOfPrivileges = (tier: number) => {
 
   girlMental.mood--;
   girlMental.rejection--;
+  girlMental.contribution= 0;
 
   slaveStore.changeMentalStats(girlMental);
   slaveStore.spendEnergy();

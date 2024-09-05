@@ -3,7 +3,7 @@
 import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
-import { baseStore } from "../../../stores/Base/base.store";
+import { baseStore } from "../../../stores/Base";
 import { slaveStore } from "../../../stores/slave/slave.store";
 import { texts } from "../model/texts";
 import { checkContribution } from "./universal/checkContribution";
@@ -13,9 +13,10 @@ export const flagellation = (tier: number) => {
     {},
     slaveStore.slave.mental
   );
-  const img = `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.sad2}`;
+  const img = `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.sad3}`;
   const request = texts.flagellation.text[tier].action + "\n";
   let response = contributionText.ExcessivePunishment;
+  girlMental.contribution= 0;
 
   const result = checkContribution(-tier - 3);
   switch (result) {

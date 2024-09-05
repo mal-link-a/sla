@@ -1,4 +1,4 @@
-import { ComplicatedStats, StudiedSpecialStats } from "./types";
+import { StudiedSpecialStats } from "./types";
 
 export const studiedSpecialStats: StudiedSpecialStats = {
   singing: {
@@ -27,8 +27,7 @@ export const studiedSpecialStats: StudiedSpecialStats = {
   },
   systemAdministration: {
     name: "Сисадмин",
-    description:
-      "Умение устанавливать программы, заправлять принтеры и администрировать локальные сети",
+    description: "Умение устанавливать программы, заправлять принтеры и администрировать локальные сети",
     lessonText: [
       "<<slave_name>> немного знаком с компьютером, но понятия не имеет о том, как по настоящему можно с ним работать. Вы показываете ему несколько полезных консольных команд, учите устанавливать принтеры, рассказываете про панель управления.",
       "<<slave_name>> немного шарит в компьютерах, но для полноценной работы этого недостаточно. Вы рассказываете ему про возможности админитратора, и показываете, как устроены и за что отвечают различные системные окна. <<slave_name>> узнаёт, что всю жизнь работал под обрезанными правами обычного пользователя, но благодаря волшебству под названием «Запуск от имени другого пользователя» можно избавиться от этой несправедливости. ",
@@ -37,6 +36,7 @@ export const studiedSpecialStats: StudiedSpecialStats = {
       "<<slave_name>> отлично администрирует, но у вас в запасе припасено несколько весёлых больших сложных программ, которые изредка используются на рабочих местах у пользователей. Их проблема заключается в том, что они имеют большие длинные муторные инструкции по установке, а у некоторых есть неприятная особенность ломать систему, если они были установлены неправильно. Вы желаете воспитуемому удачи.",
       "<<slave_name>> — прирождённый системный администратор. Он способен разобраться с любой проблемой, если та касается компьютера.",
     ],
+    conditions: [["userPC", 3]]
   },
   programming: {
     name: "Программирование",
@@ -49,6 +49,7 @@ export const studiedSpecialStats: StudiedSpecialStats = {
       "Воспитуемый умеет программировать, но ему не хватает уроков ведения большиъ прогерских проектов. Вы рассказываете ему об основных паттернах программирования, о проблемах, возникающих при масштабировании приложения, о методиках, которые могут помочь лидеру проекта избежать возможных проблем.",
       "Воспитуемый идеально понимает, что такое программирование.",
     ],
+    conditions: [["userPC", 4]]
   },
   coffeeBrewing: {
     name: "Кофе",
@@ -73,6 +74,7 @@ export const studiedSpecialStats: StudiedSpecialStats = {
       "Воспитуемый может поставить на ноги практически любого, так что вы отправляете его на практику к ведущим врачам вашего медицинского блока, чтобы его знания были ещё более подкреплены на практике.",
       "Воспитуемый идеально знает, что такое врачевание.",
     ],
+    conditions: [["firstAid", 2]]
   },
   firstAid: {
     name: "Первая помощь",
@@ -97,167 +99,9 @@ export const studiedSpecialStats: StudiedSpecialStats = {
       "Воспитуемый хорошо понимает, что такое хирургия. Вы пытаетесь научить его резать людей скальпелем.",
       "Воспитуемый идеально, что такое хирургия.",
     ],
+    conditions: [["firstAid",4], ["doctoring", 3]]
   },
 };
-export const complicatedStats: ComplicatedStats = {
-  secretary: {
-    tier1Stats: [],
-    tier2Stats: ["userPC", "management"],
-    tier3Stats: ["coffeeBrewing"],
-    name: "Секретарь",
-    description: "Мастерстро ведения бухгалтерии и выполнения поручений",
-    lessonText: [
-      "Не секретарь",
-      "Посредственный секретарь",
-      "Слабенький секретарь",
-      "Секретарь",
-      "Хороший секретарь",
-      "Секретарь с Уолл-Стрит",
-    ],
-  },
-  showman: {
-    tier1Stats: [],
-    tier2Stats: [],
-    tier3Stats: ["singing", "dance"],
-    name: "Шоумен",
-    description: "Умение выступать, петь и танцевать на сцене",
-    lessonText: [
-      "Не музыкант",
-      "Начинающий музыкант",
-      "музыкант-стажёр",
-      "Музыкант",
-      "Музыкант",
-      "Идол",
-    ],
-  },
-  factoryman: {
-    tier1Stats: ["technicalProcess", "userPC", "firstAid"],
-    tier2Stats: [],
-    tier3Stats: ["factoryMachines", "preventionOfAccidents"],
-    name: "Заводчанин",
-    description: "Умение работать на заводе.",
-    lessonText: [
-      "Не заводчанин",
-      "Подпивас",
-      "Мужик",
-      "Работяга",
-      "Батя",
-      "Красава",
-    ],
-  },
-  constructor: {
-    tier1Stats: ["firstAid"],
-    tier2Stats: ["heavyMachinery"],
-    tier3Stats: ["construction", "preventionOfAccidents"],
-    name: "Cтроитель",
-    description:
-      "Умение строить здания и прочие интересные штуки, в которых могут жить и работать люди.",
-    lessonText: [
-      "Не строитель",
-      "Принеси-подай",
-      "чернорабочий",
-      "Строитель",
-      "Строитель",
-      "Мишка-строитель",
-    ],
-  },
-  boss: {
-    tier1Stats: ["heavyMachinery"],
-    tier2Stats: ["construction"],
-    tier3Stats: [
-      "technicalProcess",
-      "factoryMachines",
-      "preventionOfAccidents",
-      "userPC",
-    ],
-    name: "Босс завода",
-    description: "Высший навык любого заводчанина. Завод - это ты.",
-    lessonText: [
-      "Не босс",
-      "Боссичонок",
-      "Боссичек",
-      "Боссик",
-      "Бочонок",
-      "Босс",
-    ],
-  },
-  doctor: {
-    tier1Stats: [],
-    tier2Stats: ["firstAid"],
-    tier3Stats: ["doctoring", "surgery"],
-    name: "Доктор",
-    description: "Врач.",
-    lessonText: [
-      "Не доктор",
-      "Санитар",
-      "Интерн",
-      "Доктор",
-      "Главврач",
-      "Рука Бога",
-    ],
-  },
-  sysadmin: {
-    tier1Stats: [],
-    tier2Stats: ["userPC"],
-    tier3Stats: ["systemAdministration"],
-    name: "Сисадмин",
-    description: "Врач компьютеров.",
-    lessonText: [
-      "Не сисадмин",
-      "Начинающий сисадмин",
-      "сисадмин-стажёр",
-      "Сисадмин",
-      "Сисадмин-виртуоз",
-      "Врач машин",
-    ],
-  },
-  programmer: {
-    tier1Stats: [],
-    tier2Stats: ["userPC"],
-    tier3Stats: ["programming"],
-    name: "Программист",
-    description: "Специалист по написанию неработающего кода.",
-    lessonText: [
-      "Не программист",
-      "Джун",
-      "Мидл",
-      "Сеньор",
-      "Тимлид",
-      "Ты в матрице",
-    ],
-  },
-  paragon: {
-    tier1Stats: [],
-    tier2Stats: [],
-    tier3Stats: [
-      "singing",
-      "dance",
-      "systemAdministration",
-      "programming",
-      "coffeeBrewing",
-      "doctoring",
-      "firstAid",
-      "surgery",
-      "driving",
-      "userPC",
-      "management",
-      "preventionOfAccidents",
-      "construction",
-      "heavyMachinery",
-      "factoryMachines",
-      "technicalProcess",
-    ],
-    name: "Босс-вертолёт",
-    description: "Парагон",
-    lessonText: [
-      "Не босс",
-      "Не босс",
-      "Не босс",
-      "Не босс",
-      "Почти босс",
-      "БОСС",
-    ],
-  },
-};
+
 
 export const studiedSpecialStatsKeys = Object.keys(studiedSpecialStats);

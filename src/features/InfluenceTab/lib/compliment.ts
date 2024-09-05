@@ -2,7 +2,7 @@
 //если кормить завтраками на постоянной основе, то они перестанут работать
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
-import { baseStore } from "../../../stores/Base/base.store";
+import { baseStore } from "../../../stores/Base/model/base.store";
 import { slaveStore } from "../../../stores/slave/slave.store";
 import { texts } from "../model/texts";
 import { influenceTime } from "./universal/influenceTime";
@@ -40,28 +40,33 @@ export const compliment = (tier: number) => {
   switch (result) {
     case ContributionType.InsufficientReward: {
       response = contributionText.InsufficientReward;
+      girlMental.contribution= 1;
       break;
     }
     case ContributionType.ExcessiveReward: {
       if (girlMental.mood > 8) {
         girlMental.obedience++;
+        girlMental.contribution= 0;
       }
       break;
     }
     case ContributionType.SufficientReward: {
       if (girlMental.mood > 8) {
         girlMental.obedience++;
+        girlMental.contribution= 0;
       }
       break;
     }
     case ContributionType.UnfairReward: {
       response = contributionText.UnfairReward;
       girlMental.rejection = girlMental.rejection + 2;
+      girlMental.contribution= 0;
       break;
     }
     case ContributionType.UndeservedReward: {
       response = contributionText.UndeservedReward;
       girlMental.rejection = girlMental.rejection + 2;
+      girlMental.contribution= 0;
       break;
     }
   }

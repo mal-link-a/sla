@@ -1,18 +1,18 @@
 //Играем во время вместе. По идее должно работать, если работник нас не боится,
 //Будет повышать привязанность или как я её там назвал
+import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
-import { baseStore } from "../../../stores/Base/base.store";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { baseStore, slaveStore } from "../../../stores";
 import { texts } from "../model/texts";
 import { checkContribution } from "./universal/checkContribution";
 
 export const timeTogether = (tier: number) => {
-  const girlMental = Object.assign(
-    {},
-    slaveStore.slave.mental
-  );
-  const img = `${process.env.PUBLIC_URL}/officeSlave/coffee.png`;
+  const girlMental = Object.assign({}, slaveStore.slave.mental);
+  let img =
+    tier !== 1
+      ? `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.happy1}`
+      : `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.coffeeBrewing}`;
   const request = texts.timeTogether.text[tier].action + "\n";
   let response = contributionText.ExcessiveReward;
 
@@ -25,6 +25,7 @@ export const timeTogether = (tier: number) => {
   }
 
   const result = checkContribution(tier + 3);
+  girlMental.contribution= 0;
 
   switch (result) {
     case ContributionType.InsufficientReward: {

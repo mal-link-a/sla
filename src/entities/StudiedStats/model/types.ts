@@ -8,7 +8,7 @@ export interface StudiedStatWithСondition extends StudiedStat {
   conditions: StatCondition[];
 }
 export type StatCondition = [
-  keyof StudiedSpecialStats | keyof StudiedNormalStats,
+  keyof StudiedSpecialStats | keyof StudiedNormalStats | keyof ComplicatedStats,
   number
 ];
 
@@ -17,21 +17,21 @@ export type StatCondition = [
 export type StudiedSpecialStats = {
   singing: StudiedStat;
   dance: StudiedStat;
-  systemAdministration: StudiedStat;
-  programming: StudiedStat;
+  systemAdministration: StudiedStatWithСondition;
+  programming: StudiedStatWithСondition;
   coffeeBrewing: StudiedStat;
-  doctoring: StudiedStat;
+  doctoring: StudiedStatWithСondition;
   firstAid: StudiedStat;
-  surgery: StudiedStat;
+  surgery: StudiedStatWithСondition;
 };
 export type StudiedNormalStats = {
   driving: StudiedStat;
   userPC: StudiedStat;
-  management: StudiedStat;
+  management: StudiedStatWithСondition;
   preventionOfAccidents: StudiedStat;
-  construction: StudiedStat;
-  heavyMachinery: StudiedStat;
-  factoryMachines: StudiedStat;
+  construction: StudiedStatWithСondition;
+  heavyMachinery: StudiedStatWithСondition;
+  factoryMachines: StudiedStatWithСondition;
   technicalProcess: StudiedStat;
 };
 export type StudiedStats = StudiedNormalStats & StudiedSpecialStats;
@@ -43,13 +43,12 @@ export interface ComplicatedStats {
   secretary: ComplicatedStat;
   boss: ComplicatedStat;
   doctor: ComplicatedStat;
-  sysadmin: ComplicatedStat;
-  programmer: ComplicatedStat;
   paragon: ComplicatedStat;
 }
 
 export interface ComplicatedStat extends StudiedStat {
   tier1Stats: (keyof StudiedSpecialStats | keyof StudiedNormalStats)[] | null;
   tier2Stats: (keyof StudiedSpecialStats | keyof StudiedNormalStats)[] | null;
-  tier3Stats: (keyof StudiedSpecialStats | keyof StudiedNormalStats)[] | null;
+  tier3Stats: (keyof StudiedSpecialStats | keyof StudiedNormalStats)[] | null;  
 }
+

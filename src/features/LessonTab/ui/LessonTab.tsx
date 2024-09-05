@@ -5,7 +5,7 @@ import { slaveStore } from "../../../stores/slave/slave.store";
 import { lessonTabStore } from "../model/lessonTab.store";
 import { SlaveOrdinaryInfo } from "../../../components/SlaveOrdinaryInfo/SlaveOrdinaryInfo";
 import { ShowMode, Teacher } from "../model/types";
-import { LessonTabSingles } from "./LessonTabSingles";
+import { LessonTabSingles } from "./SinglesTab/LessonTabSingles";
 import { LessonTabGroups } from "./GroupTab/LessonTabGroups";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ROUTE } from "../../../routes";

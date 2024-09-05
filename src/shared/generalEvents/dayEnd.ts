@@ -1,4 +1,4 @@
-import { slaveStore } from "../stores/slave/slave.store"
+import { slaveStore } from "../../stores/slave/slave.store"
 
 
 export const dayEnd = () => {

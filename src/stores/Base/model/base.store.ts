@@ -1,5 +1,5 @@
 import { makeObservable, observable, action, computed } from "mobx";
-import { Pages } from "./model/types";
+import { Pages } from "./types";
 
 class Store {
   constructor() {

@@ -2,10 +2,10 @@ import { Button, GridItem } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import {
   ComplicatedStats,
-  complicatedStats,
 } from "../../../../entities/StudiedStats";
 import { useState } from "react";
 import { SkillBoxGroup } from "./SkillBoxGroup";
+import { complicatedStats } from "../../../../entities/StudiedStats/model/complicatedStats";
 
 export const LessonTabGroups = observer(() => {
   const [currentGroup, setGroup] =

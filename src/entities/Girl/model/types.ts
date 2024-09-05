@@ -1,5 +1,9 @@
 import { MentalStats } from "../../MentalStats/model/types";
-import { StudiedNormalStats, StudiedSpecialStats } from "../../StudiedStats/model/types";
+import {
+  StudiedNormalStats,
+  StudiedSpecialStats,
+} from "../../StudiedStats/model/types";
+import { WorkPlaces } from "../../Workplaces/model/types";
 
 export interface Girl {
   id: string;
@@ -19,25 +23,34 @@ export type StatExp = {
 };
 
 //Опыт
-export type GirlExperience = Record<keyof StudiedSpecialStats | keyof StudiedNormalStats, StatExp>;
+export type GirlExperience = Record<
+  keyof StudiedSpecialStats | keyof StudiedNormalStats,
+  StatExp
+>;
 
 //Пути к изображениям сущности
 export type GirlBaseImg = {
   avatar: string;
   normal: string;
-  reject: string
+  reject: string;
 };
 export type GirlRewardImg = {
   happy1: string;
   happy2: string;
-  happy3: string
+  happy3: string;
 };
 export type GirlPunishmentImg = {
   sad1: string;
   sad2: string;
-  sad3: string
+  sad3: string;
 };
-export type SlaveImg = GirlBaseImg & GirlRewardImg & GirlPunishmentImg & Record<keyof StudiedSpecialStats | keyof StudiedNormalStats, string>;
+export type SlaveImg = GirlBaseImg &
+  GirlRewardImg &
+  GirlPunishmentImg &
+  Record<
+    keyof StudiedSpecialStats | keyof StudiedNormalStats | keyof WorkPlaces,
+    string
+  >;
 
 //Менталка
-export type GirlMental = Record<keyof MentalStats, number> 
+export type GirlMental = Record<keyof MentalStats, number>;

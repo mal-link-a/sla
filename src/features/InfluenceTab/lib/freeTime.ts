@@ -3,7 +3,7 @@
 import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
-import { baseStore } from "../../../stores/Base/base.store";
+import { baseStore } from "../../../stores/";
 import { slaveStore } from "../../../stores/slave/slave.store";
 import { texts } from "../model/texts";
 import { checkContribution } from "./universal/checkContribution";
@@ -50,6 +50,7 @@ export const freeTime = (tier: number) => {
       break;
     }
   }
+  girlMental.contribution= 0;
   slaveStore.changeMentalStats(girlMental);
   slaveStore.spendEnergy();
   baseStore.setModalData(true, img, request + "\n" + response);

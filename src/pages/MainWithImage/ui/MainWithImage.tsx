@@ -1,14 +1,14 @@
 import { Button, Grid, GridItem, Image } from "@chakra-ui/react";
 import { FC } from "react";
-import { baseStore } from "../../../stores/Base/base.store";
 import { observer } from "mobx-react-lite";
 import { NavigationTabs } from "../../../components/NavigationTabs.tsx/NavigationTabs";
 import { Pages } from "../../../stores/Base/model/types";
 import { ROUTE } from "../../../routes";
 import { slaveStore } from "../../../stores/slave/slave.store";
 import { ActionModal } from "../../../components/ActionModal/ActionModal";
-import { dayEnd } from "../../../generalEvents/dayEnd";
+import { dayEnd } from "../../../shared/generalEvents/dayEnd";
 import { slaveImg } from "../../../entities/Girl/model/imgPath";
+import { baseStore } from "../../../stores/Base/model/base.store";
 
 interface Props {
   children: React.ReactNode;
@@ -101,5 +101,3 @@ export const MainWithImage: FC<Props> = observer(({ children }) => {
     </>
   );
 });
-
-//border: 5px double #1C6EA4;
