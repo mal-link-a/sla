@@ -61,7 +61,7 @@ export const MainWithImage: FC<Props> = observer(({ children }) => {
         alignItems={"center"}
         templateRows={{ base: "100px 1fr", sm: "50px 1fr" }}
         minH={"100vh"}
-        maxH={"100vh"}        
+        maxH={"100vh"}
         gap={0}
       >
         <GridItem
@@ -82,14 +82,14 @@ export const MainWithImage: FC<Props> = observer(({ children }) => {
           <NavigationTabs tabs={tabs} />
         </GridItem>
         <GridItem
-        display="flex"
-        flexDir={"column"}
+          display="flex"
+          flexDir={"column"}
           w="100%"
           h="100%"
-          border={"8px double #C0C0C0"}          
+          border={"8px double #C0C0C0"}
         >
           {children}
-        </GridItem>        
+        </GridItem>
       </Grid>
 
       <ActionModal

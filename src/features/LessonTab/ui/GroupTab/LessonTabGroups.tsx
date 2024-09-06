@@ -15,8 +15,8 @@ export const LessonTabGroups = observer(() => {
       let name = complicatedStats[key as keyof ComplicatedStats].name;
       arr.push(
         <Button
-          key={key}          
-          bg={active ? "#1E90FF" : "#274487"}          
+          key={key}
+          bg={active ? "#1E90FF" : "#274487"}
           onClick={() => {
             setGroup(key as keyof ComplicatedStats);
           }}
@@ -36,10 +36,7 @@ export const LessonTabGroups = observer(() => {
     for (let key in complicatedStats) {
       let name = complicatedStats[key as keyof ComplicatedStats].name;
       arr.push(
-        <option
-        data-name={name}        
-          key={key}          
-        >
+        <option data-name={name} key={key}>
           {name}
         </option>
       );
@@ -48,10 +45,11 @@ export const LessonTabGroups = observer(() => {
   };
   return (
     <>
-      <GridItem  padding={2}
+      <GridItem
+        padding={2}
         display={"grid"}
         gridTemplateColumns={{ base: "1fr", sm: "3fr 7fr" }}
-        gridTemplateRows={{ base: "50px 1fr", sm: "1fr", }}
+        gridTemplateRows={{ base: "50px 1fr", sm: "1fr" }}
         h="100%"
         colSpan={1}
         bg="papayawhip"
@@ -62,16 +60,24 @@ export const LessonTabGroups = observer(() => {
             placeholder="Выберите группу"
             onChange={(e) => {
               for (let key in complicatedStats) {
-                if (complicatedStats[key as keyof ComplicatedStats].name === e.target.value) {
+                if (
+                  complicatedStats[key as keyof ComplicatedStats].name ===
+                  e.target.value
+                ) {
                   setGroup(key as keyof ComplicatedStats);
                 }
-              }            
+              }
             }}
           >
             {selectGroups()}
           </Select>
         </GridItem>
-        <GridItem p={4} pt={16} h="auto" display={{ base: "none", sm: "block" }}>          
+        <GridItem
+          p={4}
+          pt={16}
+          h="auto"
+          display={{ base: "none", sm: "block" }}
+        >
           {getGroups()}
         </GridItem>
         <SkillBoxGroup keyName={currentGroup} />

@@ -15,7 +15,7 @@ import { dayEnd } from "../../../shared/generalEvents/dayEnd";
 
 //TODO В пропсах число получаем от 0 до 10. Написать на ts проверку на диапазон
 export const LessonTab = observer(() => {
-  const [infomode, switchInfoMod, teacher, setTeacher,] = [
+  const [infomode, switchInfoMod, teacher, setTeacher] = [
     lessonTabStore.infoMode,
     lessonTabStore.switchInfoMod,
     lessonTabStore.teacher,
@@ -39,47 +39,34 @@ export const LessonTab = observer(() => {
 
   return (
     <Grid
-      templateRows= {{base: "275px 1fr", md: "1fr 50px"}}
-      templateColumns= {{base: "1fr", md: "150px 1fr"}}
+      templateRows={{ base: "275px 1fr", md: "1fr 50px" }}
+      templateColumns={{ base: "1fr", md: "150px 1fr" }}
       gap={0}
       bg="papayawhip"
       h="100%"
     >
-      <GridItem  h="100%" colSpan={1} rowSpan={1}>
+      <GridItem h="100%" colSpan={1} rowSpan={1}>
         <SlaveOrdinaryInfo />
         <NavigationTabs tabs={tabs} dir="column" />
       </GridItem>
       <GridItem>
-      <Routes>
-        <Route
-          path={ROUTE.LESSON.GROUPS.PATTERN}
-          element={<LessonTabGroups />}
-        />
-        <Route
-          path={ROUTE.LESSON.SINGLE.PATTERN}
-          element={<LessonTabSingles />}
-        />
-        <Route
-          path={"*"}
-          element={<Navigate to={ROUTE.LESSON.SINGLE.PATTERN} replace={true} />}
-        />
-      </Routes>
+        <Routes>
+          <Route
+            path={ROUTE.LESSON.GROUPS.PATTERN}
+            element={<LessonTabGroups />}
+          />
+          <Route
+            path={ROUTE.LESSON.SINGLE.PATTERN}
+            element={<LessonTabSingles />}
+          />
+          <Route
+            path={"*"}
+            element={
+              <Navigate to={ROUTE.LESSON.SINGLE.PATTERN} replace={true} />
+            }
+          />
+        </Routes>
       </GridItem>
-      
-
-      
-    
     </Grid>
   );
 });
-
-/*
-<Button w="100%"
-transition={"background 0.5s ease-in-out;"}
-onClick={() => {
-  switchInfoMod();
-}}
-colorScheme={infomode ? "green" : "blue"}
->
-{infomode ? "Режим изучения" : "Режим обучения"}
-</Button>*/

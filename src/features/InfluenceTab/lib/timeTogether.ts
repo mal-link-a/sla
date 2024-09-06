@@ -25,7 +25,7 @@ export const timeTogether = (tier: number) => {
   }
 
   const result = checkContribution(tier + 3);
-  girlMental.contribution= 0;
+  girlMental.contribution = 0;
 
   switch (result) {
     case ContributionType.InsufficientReward: {
