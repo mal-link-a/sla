@@ -37,10 +37,11 @@ export const LessonTabSingles = observer(() => {
   return (
     <>
       <GridItem     
-        display={"grid"}
-        gridTemplateColumns={{base: "1fr", sm:"1fr 1fr"}}
-        gridTemplateRows={{base: "1fr 1fr", sm:"1fr"}}
-        justifyItems="center"
+        display={"flex"}
+        flexDir={{base: "column", sm:"row"}}
+        alignItems={"center"}
+        
+        justifyContent="space-evenly"
         h="100%"
         colSpan={1}
       >

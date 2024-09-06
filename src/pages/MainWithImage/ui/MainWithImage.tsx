@@ -19,7 +19,7 @@ const tabs = [
     id: Pages.lesson,
     pattern: ROUTE.LESSON.PATH,
     label: "Обучение",
-    img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/${slaveImg.normal}`,
+    img: `${process.env.PUBLIC_URL}/locations/class.png`,
   },
   {
     id: Pages.сustomerOrders,
@@ -53,19 +53,19 @@ export const MainWithImage: FC<Props> = observer(({ children }) => {
   return (
     <>
       <Grid
-        ml="13px"
+        maxW={{ base: "90%", sm: "95%", md: "1200px" }}
+        ml={{ base: "13px", md: "auto" }}
         mr="auto"
-        templateColumns={{ base: "1fr", md: "25vw 75vw" }}
+        templateColumns={{ base: "1fr", md: "25vw 1fr" }}
         justifyContent={"center"}
         alignItems={"center"}
         templateRows={{ base: "100px 1fr", sm: "50px 1fr" }}
         minH={"95vh"}
-        maxH={"95vh"}
-        maxW={{ base: "90%", sm: "95%", md: "95%" }}
+        maxH={"95vh"}        
         gap={0}
       >
         <GridItem
-          h={"100vh"}
+          h={"100%"}
           display={{ base: "none", md: "block" }}
           colSpan={1}
           rowSpan={2}

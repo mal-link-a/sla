@@ -99,6 +99,7 @@ export const LessonStatParam: FC<Props> = observer(
       <VStack pl={1} pr={1} alignItems={"flex-start"} gap={0}>
         <label>
           <Button
+            fontSize={12}
             justifyContent={"flex-start"}
             onClick={() => {
               onClick();

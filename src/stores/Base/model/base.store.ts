@@ -6,7 +6,7 @@ class Store {
     makeObservable(this);
   }
 
-  @observable imgSrc: string = `${process.env.PUBLIC_URL}/locations/work.png`;
+  @observable imgSrc: string = `${process.env.PUBLIC_URL}/locations/class.png`;
 
   @observable currentPage: Pages = Pages.lesson;
 
