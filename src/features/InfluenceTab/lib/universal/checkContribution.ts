@@ -1,5 +1,5 @@
 import { ContributionType } from "../../../../entities/MentalStats/model/types";
-import { slaveStore } from "../../../../stores/slave/slave.store"
+import { slaveStore } from "../../../../stores/slave/model/slave.store"
 
 export const checkContribution = (val: number): ContributionType => {
     const сontribution  = slaveStore.slave.mental.contribution;

@@ -10,8 +10,8 @@ import {
   GridItem,
 } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import { protagonistStore } from "../../../stores/protagonist/protagonist.store";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { protagonistStore } from "../../../stores/protagonist/model/protagonist.store";
+import { slaveStore } from "../../../stores/slave/model/slave.store";
 import { girlSpendingStamina } from "../../../shared/check/girlSpendingStamina";
 import { workPlaces } from "../../../entities/Workplaces/model/workPlaces";
 import {
@@ -28,6 +28,7 @@ import { StudiedSpecialStats, StudiedStats, StudiedStatWithСondition } from "..
 import { studiedAllStats } from "../../../entities/StudiedStats/model/allStats";
 import { checkConditions } from "../../../shared/check/checkConditions";
 import { baseStore } from "../../../stores/Base/model/base.store";
+import { SlaveOrdinaryInfo } from "../../../components/SlaveOrdinaryInfo/SlaveOrdinaryInfo";
 
 const getRnd = (num: number) => {
   return Math.floor(Math.random() * (num + 1));
@@ -104,8 +105,10 @@ export const WorkTab = observer(() => {
     }
   };
   return (
-    <Flex p={2} flexDir={"column"} minH="100%">
-      <Text pb={2}>
+    <Flex bg="#dddcf7"minW="100%" flexDir={"column"} minH="100%" justifyContent={"space-between"}>
+      <Flex flexDir={{base:"column", md: "row"}}>
+      <SlaveOrdinaryInfo isColumn={true}/>
+      <Text p={4}>
         Ты приходишь в здание своего офиса, олицетворения великолепного мира
         современной бизнес-индустрии. Это вполне обычное комфортабельное
         помещение, полное прекрасных рабочих мест. Каждый сотрудник, попавший
@@ -122,16 +125,21 @@ export const WorkTab = observer(() => {
         <br />
         {energy === 0 ? "Солнце уже село..." : energy ===1 ? "Солнце садится..." : "Солнце ещё высоко."}
       </Text>
+      </Flex>
+     
 
-      <Box
+      <Flex
         gap={3}
-        display="flex"
         alignContent="center"
         flexWrap="wrap"
         flexDirection={"row"}
+        m={6}
+        mb={8}
+
       >
         {Object.entries(workPlaces).map((item) => (
           <Button
+            key={item[0]}
             variant={"work"}
             h={16}
             borderRadius={8}
@@ -142,7 +150,7 @@ export const WorkTab = observer(() => {
             {item[1].name}
           </Button>
         ))}
-      </Box>
+      </Flex>
     </Flex>
   );
 });

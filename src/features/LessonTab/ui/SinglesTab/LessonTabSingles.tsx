@@ -1,6 +1,6 @@
 import { GridItem } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import { slaveStore } from "../../../../stores/slave/slave.store";
+import { slaveStore } from "../../../../stores/slave/model/slave.store";
 import { GirlExperience } from "../../../../entities/Girl";
 import { LessonStatParam } from "../LessonStatParam";
 import { studiedAllStats } from "../../../../entities/StudiedStats/model/allStats";
@@ -36,12 +36,13 @@ const getData = (val: string[]) => {
 export const LessonTabSingles = observer(() => { 
   return (
     <>
-      <GridItem
+      <GridItem     
         display={"grid"}
-        gridTemplateColumns="1fr 1fr"
+        gridTemplateColumns={{base: "1fr", sm:"1fr 1fr"}}
+        gridTemplateRows={{base: "1fr 1fr", sm:"1fr"}}
+        justifyItems="center"
         h="100%"
         colSpan={1}
-        bg="papayawhip"
       >
         <GridItem display={"flex"} flexDir={"column"} alignItems={"center"}>
           {getData(studiedNormalStatsKeys)}

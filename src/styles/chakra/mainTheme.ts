@@ -12,8 +12,6 @@ export const theme = extendTheme({
   components: {
     Button: {
       baseStyle: { 
-        border: "1px solid",
-        borderRadius: '0px',
       },
       sizes: {
         l: {
@@ -24,11 +22,20 @@ export const theme = extendTheme({
         },
       },
       variants: {
-        solid: {          
-          _hover: {            
+        solid: {
+          h:"40px",
+          w:"100%",
+          borderRadius:0,      
+          bg:"#274487",
+          color:"#FFFFFF"  ,        
+          _hover: { 
+            background: "#1E90FF"           
           },
           _disabled: {           
           },
+          _active: {
+            background: "#191970",  
+          }
         },
         work: { 
           fontSize:"16px",
@@ -66,21 +73,26 @@ export const theme = extendTheme({
     Tabs: {
         baseStyle: {
           tab: { 
-            height:"40px",           
-            _focus: {              
-              color: '#B0C4DE',
+            background:"white",
+            height:"48px",   
+            borderBottom: "0px solid",        
+            _focus: {         
+              color: '#4682B4',
+              border: "none",
+              textShadow: "#4682B4 1px 0 16px",      
             },
             _selected: {
-              color: 'white',
-              bg: '#274487',
+              
+              color: '#000080',
+              borderBottom: "3px solid",
+              textShadow: "#4682B4 1px 0 16px",
               _hover: {
-                color: 'white',
+                color: '#4682B4',
               },
             },
-            _hover: {
-              background:"#000080",
-              color:"white"
-                
+            _hover: {              
+              color: '#4682B4', 
+              textShadow: "#4682B4 1px 0 16px",  
             },
           },
         },

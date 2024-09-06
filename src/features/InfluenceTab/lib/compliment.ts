@@ -3,7 +3,7 @@
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { ContributionType } from "../../../entities/MentalStats/model/types";
 import { baseStore } from "../../../stores/Base/model/base.store";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { slaveStore } from "../../../stores/slave/model/slave.store";
 import { texts } from "../model/texts";
 import { influenceTime } from "./universal/influenceTime";
 import { checkContribution } from "./universal/checkContribution";

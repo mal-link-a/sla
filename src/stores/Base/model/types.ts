@@ -1,6 +1,6 @@
 export enum Pages {
     lesson = "Обучение",
-    сustomerOrders = "Офисная работа",
+    сustomerOrders = "Работа",
     influence = "Воздействие",
     About = "О проекте"
 }

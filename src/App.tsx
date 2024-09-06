@@ -1,4 +1,4 @@
-import { Route, Routes, } from "react-router-dom";
+import { Navigate, Route, Routes, } from "react-router-dom";
 import "./App.css";
 
 import { LessonTab } from "./features/LessonTab";
@@ -16,6 +16,7 @@ const App = () => {
         <Route path={ROUTE.WORK.PATH} element={<WorkTab />} />
         <Route path={ROUTE.INFLUENCE.PATH} element={<InfluenceTab />} />
         <Route path={ROUTE.ABOUT.PATH} element={<About />} />
+        <Route path="*" element={<Navigate to={ROUTE.LESSON.PATH} replace={true}/>}  />
       </Routes>
     </MainWithImage>
   );

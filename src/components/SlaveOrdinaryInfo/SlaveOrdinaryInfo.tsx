@@ -1,8 +1,9 @@
-import { Flex, Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { Flex, Box, HStack, Image, Text, VStack, Button } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { slaveMood } from "../../entities/Girl/model/slaveMood";
-import { slaveStore } from "../../stores/slave/slave.store";
+import { slaveStore } from "../../stores/slave/model/slave.store";
 import { slaveImg } from "../../entities/Girl/model/imgPath";
+import { dayEnd } from "../../shared/generalEvents/dayEnd";
 
 interface Props {
   isColumn?: boolean;
@@ -42,14 +43,15 @@ export const SlaveOrdinaryInfo = observer(({ isColumn = true }: Props) => {
     return contribution>0 ? `Отличился (${contribution})` : contribution < 0  ? `Провинился (${contribution})` : "Не ждёт награды";
   };
   return (
-    <Flex
-      flexDir={isColumn ? "column" : "row"}
-      minW={isColumn ? "150px" : "300px"}
-      border={"1px solid black"}
+    <VStack>
+    <Flex w="100%"
+      justifyContent={"space-between"}
+      flexDir={{base: "row", md: isColumn ? "column" : "row"}}
+      minW= {{base: "290px", md: isColumn ? "150px" : "290px"}}
       gap={0}
     >
       <Image border={"6px groove #a1a1a1"} h="150px" w="150px" src={img} />
-      <VStack justifyContent={"center"} minW={"50%"}>
+      <VStack flexGrow={1} justifyContent={"center"} minW={"50%"}>
         <Text>{name} </Text>
         <Text>{slaveMood[mood]} </Text>
         <VStack border={"1px groove #a1a1a1"}>
@@ -60,6 +62,17 @@ export const SlaveOrdinaryInfo = observer(({ isColumn = true }: Props) => {
         </VStack>
         <Text>{contributionText()}</Text>
       </VStack>
-    </Flex>
+      </Flex>
+      <Button
+          maxH="40px"
+          w="100%"
+        flexGrow={1}
+        flexShrink={2}
+        onClick={dayEnd}
+      >
+        Закончить день
+      </Button>
+
+    </VStack>
   );
 });

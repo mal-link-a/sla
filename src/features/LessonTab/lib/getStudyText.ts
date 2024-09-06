@@ -1,6 +1,6 @@
 import { studiedAllStats } from "../../../entities/StudiedStats/model/allStats";
 import {   StudiedStats } from "../../../entities/StudiedStats/model/types";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { slaveStore } from "../../../stores/slave/model/slave.store";
 import { ModalLessonDiligence } from "../model/lessonModalText";
 
 export const getStudyText = (

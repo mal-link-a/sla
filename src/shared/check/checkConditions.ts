@@ -8,7 +8,7 @@ import {
 import { studiedAllStats } from "../../entities/StudiedStats/model/allStats";
 import { complicatedStats } from "../../entities/StudiedStats/model/complicatedStats";
 import { studiedNormalStats } from "../../entities/StudiedStats/model/normalStats";
-import { slaveStore } from "../../stores/slave/slave.store";
+import { slaveStore } from "../../stores/slave/model/slave.store";
 import { getCompicatedValue } from "../get/getCompicatedValue";
 
 export const checkConditions = (conditions: StatCondition[]): string | false => {

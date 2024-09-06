@@ -27,6 +27,7 @@ export const InfluenceMenuList = ({ filterType }: Props) => {
     });
   };
   const onClick = (num: number, cb: (num: number) => void) => {
+    toast.closeAll();
     const energyCheck = girlSpendingStamina(1);
     if (!energyCheck) {
       cb(num);
@@ -40,6 +41,7 @@ export const InfluenceMenuList = ({ filterType }: Props) => {
     for (let i = 0; i < arr.text.length; i++) {
       finalArr.push(
         <MenuItem
+         maxW={"80vw"}
           key={arr.text[i].name}
           onClick={() => {
             onClick(i, arr.callBack);
@@ -61,7 +63,7 @@ export const InfluenceMenuList = ({ filterType }: Props) => {
             <MenuButton w="80%" as={Button} rightIcon={<ChevronDownIcon />}>
               {item.name}
             </MenuButton>
-            <MenuList>{menuItem(item)}</MenuList>
+            <MenuList >{menuItem(item)}</MenuList>
           </Menu>
         ))}
     </>

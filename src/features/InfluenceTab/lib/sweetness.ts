@@ -1,7 +1,7 @@
 //Выглядит как беспроигрышный вариант, кроме тех. кто не любит сладкое.
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { baseStore } from "../../../stores";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { slaveStore } from "../../../stores/slave/model/slave.store";
 import { texts } from "../model/texts";
 
 export const sweetness = (tier: number) => {

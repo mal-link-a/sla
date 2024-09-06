@@ -4,7 +4,7 @@
 import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { contributionText } from "../../../entities/MentalStats/model/contributionText";
 import { baseStore } from "../../../stores/Base/model/base.store";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { slaveStore } from "../../../stores/slave/model/slave.store";
 import { texts } from "../model/texts";
 
 export const extreme = (tier: number) => {

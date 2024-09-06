@@ -99,25 +99,12 @@ export const complicatedStats: ComplicatedStats = {
     },
     
     paragon: {
-      tier1Stats: [],
-      tier2Stats: [],
+      tier1Stats: ["userPC", "technicalProcess"],
+      tier2Stats: [ "construction"],
       tier3Stats: [
-        "singing",
-        "dance",
-        "systemAdministration",
-        "programming",
-        "coffeeBrewing",
-        "doctoring",
-        "firstAid",
         "surgery",
-        "driving",
-        "userPC",
-        "management",
-        "preventionOfAccidents",
-        "construction",
-        "heavyMachinery",
         "factoryMachines",
-        "technicalProcess",
+        "heavyMachinery"
       ],
       name: "Босс-вертолёт",
       description: "Парагон",

@@ -4,9 +4,9 @@ import type {
   GirlExperience,
   GirlMental,
   StatExp,
-} from "../../entities/Girl";
-import { MentalStats } from "../../entities/MentalStats/model/types";
-import { mentalStats } from "../../entities/MentalStats/model/mentalStats";
+} from "../../../entities/Girl";
+import { MentalStats } from "../../../entities/MentalStats/model/types";
+import { mentalStats } from "../../../entities/MentalStats/model/mentalStats";
 
 const firstGirl: Girl = {
   id: "officeSlave",

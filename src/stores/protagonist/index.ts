@@ -1,1 +1,1 @@
-export * from "./protagonist.store"
+export * from "./model/protagonist.store"

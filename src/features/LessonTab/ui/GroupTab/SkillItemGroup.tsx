@@ -1,7 +1,7 @@
 import { Box, Heading, Flex } from "@chakra-ui/react";
 import { GirlExperience } from "../../../../entities/Girl";
 import { studiedAllStats } from "../../../../entities/StudiedStats/model/allStats";
-import { slaveStore } from "../../../../stores/slave/slave.store";
+import { slaveStore } from "../../../../stores/slave/model/slave.store";
 import { LessonStatParam } from "../LessonStatParam";
 import {
   ComplicatedStat,
@@ -43,7 +43,7 @@ export const SkillItemGroup = ({ keyName, header, techLevel }: Props) => {
   };
 
   return (
-    <Box mb={1} border="5px double #8049A4" h="30%">
+    <Box mb={1} border="5px double #8049A4" h="100%">
       <Heading textAlign={"center"} as="h2" size="sm">
         {header}
       </Heading>

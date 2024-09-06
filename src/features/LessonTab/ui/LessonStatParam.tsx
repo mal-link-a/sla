@@ -20,7 +20,7 @@ import {
 } from "../../../entities/StudiedStats";
 import { checkConditions } from "../../../shared/check/checkConditions";
 import { baseStore } from "../../../stores/Base/model/base.store";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { slaveStore } from "../../../stores/slave/model/slave.store";
 import { checkMotivation } from "../lib/checkMotivation";
 import { slaveImg } from "../../../entities/Girl/model/imgPath";
 import { studiedAllStats } from "../../../entities/StudiedStats/model/allStats";
@@ -96,7 +96,7 @@ export const LessonStatParam: FC<Props> = observer(
     };
 
     return (
-      <VStack alignItems={"flex-start"} gap={0}>
+      <VStack pl={1} pr={1} alignItems={"flex-start"} gap={0}>
         <label>
           <Button
             justifyContent={"flex-start"}

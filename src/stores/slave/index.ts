@@ -1,1 +1,1 @@
-export * from "./slave.store"
+export * from "./model/slave.store"

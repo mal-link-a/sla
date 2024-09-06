@@ -1,7 +1,7 @@
 import { Box, Flex, Text, GridItem, Heading } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { ComplicatedStats } from "../../../../entities/StudiedStats";
-import { } from "../../../../stores/slave/slave.store";
+import { } from "../../../../stores/slave/model/slave.store";
 import { statLevelColor, statLevelName } from "../../../../entities/Girl";
 import { FC } from "react";
 import { SkillItemGroup } from "./SkillItemGroup";
@@ -22,7 +22,7 @@ export const SkillBoxGroup:FC<Props> = observer(({keyName}) => {
        <Box h="10%">
             <Text size='sm'>Уровень владения: <span style={{  
         color: statLevelColor[value],
-      }} >{statLevelName[value]}</span></Text>
+      }} >{statLevelName[value]}</span></Text>      
         </Box>
         <SkillItemGroup keyName={keyName} header={"Прямое влияние"} techLevel={"tier3Stats"} />
         <SkillItemGroup keyName={keyName} header={"Вспомогательное"} techLevel={"tier2Stats"}/>

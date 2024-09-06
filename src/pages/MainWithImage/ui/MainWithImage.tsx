@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import { NavigationTabs } from "../../../components/NavigationTabs.tsx/NavigationTabs";
 import { Pages } from "../../../stores/Base/model/types";
 import { ROUTE } from "../../../routes";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { slaveStore } from "../../../stores/slave/model/slave.store";
 import { ActionModal } from "../../../components/ActionModal/ActionModal";
 import { dayEnd } from "../../../shared/generalEvents/dayEnd";
 import { slaveImg } from "../../../entities/Girl/model/imgPath";
@@ -37,7 +37,7 @@ const tabs = [
     id: Pages.About,
     pattern: ROUTE.ABOUT.PATH,
     label: "О проекте",
-    img: `${process.env.PUBLIC_URL}/girls/${slaveStore.slave.id}/_normal.png`,
+    img: `${process.env.PUBLIC_URL}/other/universe.png`,
   },
 ];
 
@@ -52,44 +52,44 @@ export const MainWithImage: FC<Props> = observer(({ children }) => {
 
   return (
     <>
-      <Grid templateColumns="25vw 75vw" templateRows=" 48px 1fr" gap={0}>
-        <GridItem colSpan={1} rowSpan={2} bg="#F0F8FF">
+      <Grid
+        ml="13px"
+        mr="auto"
+        templateColumns={{ base: "1fr", md: "25vw 75vw" }}
+        justifyContent={"center"}
+        alignItems={"center"}
+        templateRows={{ base: "100px 1fr", sm: "50px 1fr" }}
+        minH={"95vh"}
+        maxH={"95vh"}
+        maxW={{ base: "90%", sm: "95%", md: "95%" }}
+        gap={0}
+      >
+        <GridItem
+          h={"100vh"}
+          display={{ base: "none", md: "block" }}
+          colSpan={1}
+          rowSpan={2}
+          bg="#F0F8FF"
+        >
           <Image
-            minH={"100vh"}
             boxSize="100%"
             objectFit="cover"
             src={baseStore.imgSrc}
             alt="Witch"
           />
         </GridItem>
-        <GridItem
-          display="flex"
-          flexDir={"row"}
-          justifyContent="space-between"
-          border={"5px double #1C6EA4"}
-          colSpan={1}
-          rowSpan={1}
-          bg="#F0F8FF"
-        >
+        <GridItem>
           <NavigationTabs tabs={tabs} />
-          <Button
-            onClick={dayEnd}
-            _hover={{ background: "#000080" }}
-            bg="#274487"
-            color="#FFFFFF"
-            alignSelf={"center"}
-          >
-            Закончить день
-          </Button>
         </GridItem>
         <GridItem
-          border={"5px double #1C6EA4"}
-          colSpan={1}
-          rowSpan={1}
-          bg="#F0F8FF"
+        display="flex"
+        flexDir={"column"}
+          w="100%"
+          h="100%"
+          border={"8px double #C0C0C0"}          
         >
           {children}
-        </GridItem>
+        </GridItem>        
       </Grid>
 
       <ActionModal

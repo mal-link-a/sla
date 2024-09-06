@@ -1,5 +1,5 @@
 import { expBase,} from "../../../entities/Girl";
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { slaveStore } from "../../../stores/slave/model/slave.store";
 
 export const lessonExecution = (  
   keyName: string,

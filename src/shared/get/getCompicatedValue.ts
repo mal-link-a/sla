@@ -1,4 +1,4 @@
-import { slaveStore } from "../../stores/slave/slave.store";
+import { slaveStore } from "../../stores/slave/model/slave.store";
 import { GirlExperience } from "../../entities/Girl";
 import { studiedAllStats } from "../../entities/StudiedStats/model/allStats";
 import { ComplicatedStat } from "../../entities/StudiedStats/model/types";

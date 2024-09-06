@@ -1,7 +1,7 @@
 import { Button, Grid, GridItem } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 
-import { slaveStore } from "../../../stores/slave/slave.store";
+import { slaveStore } from "../../../stores/";
 import { lessonTabStore } from "../model/lessonTab.store";
 import { SlaveOrdinaryInfo } from "../../../components/SlaveOrdinaryInfo/SlaveOrdinaryInfo";
 import { ShowMode, Teacher } from "../model/types";
@@ -11,15 +11,15 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { ROUTE } from "../../../routes";
 import { NavigationTabs } from "../../../components/NavigationTabs.tsx/NavigationTabs";
 import { slaveImg } from "../../../entities/Girl/model/imgPath";
+import { dayEnd } from "../../../shared/generalEvents/dayEnd";
 
 //TODO В пропсах число получаем от 0 до 10. Написать на ts проверку на диапазон
 export const LessonTab = observer(() => {
-  const [infomode, switchInfoMod, teacher, setTeacher, current] = [
+  const [infomode, switchInfoMod, teacher, setTeacher,] = [
     lessonTabStore.infoMode,
     lessonTabStore.switchInfoMod,
     lessonTabStore.teacher,
     lessonTabStore.setTeacher,
-    slaveStore.slave,
   ];
 
   const tabs = [
@@ -39,63 +39,17 @@ export const LessonTab = observer(() => {
 
   return (
     <Grid
-      minH={"100%"}
-      templateRows="40px 1fr"
-      templateColumns="150px 1fr"
+      templateRows= {{base: "275px 1fr", md: "1fr 50px"}}
+      templateColumns= {{base: "1fr", md: "150px 1fr"}}
       gap={0}
+      bg="papayawhip"
+      h="100%"
     >
-      <GridItem
-        display={"flex"}
-        justifyContent={"space-between"}
-        rowSpan={1}
-        colSpan={4}
-        bg="white"
-      >
-        <Button
-          onClick={(e) => {
-            setTeacher(Teacher.Me);
-          }}
-          isDisabled={infomode}
-          colorScheme={teacher === Teacher.Me ? "green" : "blue"}
-          w="24%"
-        >
-          {Teacher.Me}
-        </Button>
-        <Button
-          onClick={() => {
-            setTeacher(Teacher.Assistant);
-          }}
-          isDisabled={infomode}
-          colorScheme={teacher === Teacher.Assistant ? "green" : "blue"}
-          w="24%"
-        >
-          {Teacher.Assistant}
-        </Button>
-        <Button
-          onClick={() => {
-            setTeacher(Teacher.Coach);
-          }}
-          isDisabled={infomode}
-          colorScheme={teacher === Teacher.Coach ? "green" : "blue"}
-          w="24%"
-        >
-          {Teacher.Coach}
-        </Button>
-        <Button
-          transition={"background 0.5s ease-in-out;"}
-          onClick={() => {
-            switchInfoMod();
-          }}
-          colorScheme={infomode ? "green" : "blue"}
-          w="24%"
-        >
-          {infomode ? "Режим изучения" : "Режим обучения"}
-        </Button>
-      </GridItem>
-      <GridItem h="100%" colSpan={1} bg="papayawhip">
+      <GridItem  h="100%" colSpan={1} rowSpan={1}>
         <SlaveOrdinaryInfo />
         <NavigationTabs tabs={tabs} dir="column" />
       </GridItem>
+      <GridItem>
       <Routes>
         <Route
           path={ROUTE.LESSON.GROUPS.PATTERN}
@@ -110,6 +64,22 @@ export const LessonTab = observer(() => {
           element={<Navigate to={ROUTE.LESSON.SINGLE.PATTERN} replace={true} />}
         />
       </Routes>
+      </GridItem>
+      
+
+      
+    
     </Grid>
   );
 });
+
+/*
+<Button w="100%"
+transition={"background 0.5s ease-in-out;"}
+onClick={() => {
+  switchInfoMod();
+}}
+colorScheme={infomode ? "green" : "blue"}
+>
+{infomode ? "Режим изучения" : "Режим обучения"}
+</Button>*/
