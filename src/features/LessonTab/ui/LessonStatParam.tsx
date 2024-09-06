@@ -112,7 +112,7 @@ export const LessonStatParam: FC<Props> = observer(
           >
             {name}
           </Button>
-          <HStack w={{base: "70vw" ,sm: "40vw", md: "25vw"}} justifyContent={"space-between"} align={"baseline"}>
+          <HStack w={{base: "70vw" ,sm: "40vw", md: "25vw", xl: "15vw"}} justifyContent={"space-between"} align={"baseline"}>
             <Progress
               w="100%"
               colorScheme={level === 5 ? "green" : "blue"}
