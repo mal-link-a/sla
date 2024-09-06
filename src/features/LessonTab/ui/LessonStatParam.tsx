@@ -99,7 +99,7 @@ export const LessonStatParam: FC<Props> = observer(
       <VStack pl={1} pr={1} alignItems={"flex-start"} gap={0}>
         <label>
           <Button
-            fontSize={12}
+            fontSize={{base: 14 ,sm: 18, md: 20}}
             justifyContent={"flex-start"}
             onClick={() => {
               onClick();
@@ -112,9 +112,9 @@ export const LessonStatParam: FC<Props> = observer(
           >
             {name}
           </Button>
-          <HStack w={200} justifyContent={"space-between"} align={"baseline"}>
+          <HStack w={{base: "70vw" ,sm: "40vw", md: "25vw"}} justifyContent={"space-between"} align={"baseline"}>
             <Progress
-              w={150}
+              w="100%"
               colorScheme={level === 5 ? "green" : "blue"}
               value={
                 level === 5

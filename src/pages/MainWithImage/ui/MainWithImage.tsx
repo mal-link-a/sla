@@ -60,8 +60,8 @@ export const MainWithImage: FC<Props> = observer(({ children }) => {
         justifyContent={"center"}
         alignItems={"center"}
         templateRows={{ base: "100px 1fr", sm: "50px 1fr" }}
-        minH={"95vh"}
-        maxH={"95vh"}        
+        minH={"100vh"}
+        maxH={"100vh"}        
         gap={0}
       >
         <GridItem
